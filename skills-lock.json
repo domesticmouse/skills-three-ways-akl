@@ -120,6 +120,13 @@
       "skillPath": "skills/engineering/improve-codebase-architecture/SKILL.md",
       "computedHash": "f0820b18426a7d9a6c823a890988ba0ac70bf0fd596d30d7ef07c88558728c23"
     },
+    "ios-simulator-screenshot": {
+      "source": "domesticmouse/skills",
+      "commit": "a6a249ef9aafc49ac54332e366b3079add2977c7",
+      "sourceType": "github",
+      "skillPath": "skills/ios-simulator-screenshot/SKILL.md",
+      "computedHash": "da18381600bc972f77a1addf87b48d49d837af42726981ece99686ea37f6dcf0"
+    },
     "pr": {
       "source": "mattpocock/skills",
       "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa",
