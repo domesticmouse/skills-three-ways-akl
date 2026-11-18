@@ -25,7 +25,7 @@ from brain_explorer.models import (
 )
 
 BESPOKE_PROJECT_SKILLS: frozenset[str] = frozenset(
-    {"agy-brain-explorer", "slidev-deck", "bjm-voice"}
+    {"agy-brain-explorer", "a2ui-textual", "slidev-deck", "bjm-voice"}
 )
 
 _USER_REQUEST_RE = re.compile(r"<USER_REQUEST>\s*(.*?)\s*</USER_REQUEST>", re.DOTALL)
