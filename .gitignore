@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+build/
+*.egg-info/
+slides/node_modules/
+slides/dist/
+slides/.slidev.pid
+slides/.slidev.log
+
