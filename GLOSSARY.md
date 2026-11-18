@@ -9,17 +9,21 @@ The three-tier classification of AI agent skills used as the spine of the talk: 
 _Avoid_: Skill categories, skill levels
 
 **Brain Explorer**:
-The companion application built during the talk to discover, inspect, and compare Antigravity session trajectories.
+The companion Python CLI and Textualize (`Textual`) TUI application built during the talk to discover, inspect, and compare Antigravity session trajectories.
 _Avoid_: Demo app, trajectory viewer, admin dashboard
 
 **Session Trajectory**:
 A single recorded Antigravity conversation stored under `~/.gemini/**/brain/<session-id>/` (`transcript.jsonl` and `transcript_full.jsonl`), comprising user prompts, model thinking steps, tool calls, and skill activations.
 _Avoid_: Chat log, conversation history, trace file
 
-**Wayfinder Map**:
-The canonical GitHub issue labelled `wayfinder:map` that indexes resolved decisions, child decision tickets on the frontier, and the fog of war (`Not yet specified`) on the route to the destination.
-_Avoid_: Epic, project board, backlog
-
 **Skill Activation**:
 An invocation of an agent skill within a Session Trajectory, evidenced either by an explicit `<SKILL>` slash-command payload in user input or by the agent reading a `SKILL.md` file during execution.
 _Avoid_: Skill call, plugin trigger, tool invocation
+
+**Exploratory Run**:
+The unscripted first-pass build of **Brain Explorer** used to test the stack, surface the bespoke skill needed for Way 3, and harvest real `~/.gemini` Session Trajectories before scripting the talk's prompts.
+_Avoid_: Dry run, spike, draft build
+
+**Recording Run**:
+The scripted second-pass execution of the prompts discovered during the Exploratory Run, captured under `asciinema` into `.cast` files for deterministic playback across the entire Slidev deck.
+_Avoid_: Live demo, screen recording, final take
