@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PROTOTYPE — a2ui-textual Skill Lifecycle &amp; Guardrails</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-alt: #162032;
+      --border: #334155;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --ok: #34d399;
+      --warn: #fbbf24;
+      --err: #f87171;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 2rem 1.25rem 4rem;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.55;
+    }
+    main { max-width: 960px; margin: 0 auto; }
+    .banner {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    h1 { margin: 0 0 0.5rem; font-size: 1.75rem; color: #f8fafc; }
+    .intro { margin: 0 0 1.75rem; color: var(--muted); max-width: 78ch; }
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.4rem;
+      margin-bottom: 1.25rem;
+    }
+    h2 { margin: 0 0 0.85rem; font-size: 1.1rem; color: #f8fafc; }
+    .change-callout {
+      padding: 0.65rem 0.9rem;
+      border-radius: 8px;
+      background: rgba(56, 189, 248, 0.1);
+      border-left: 3px solid var(--accent);
+      margin-bottom: 1rem;
+      font-size: 0.93rem;
+    }
+    .state-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+    .field {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.8rem;
+    }
+    .field-label {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+    .field-value { font-weight: 600; font-size: 0.95rem; word-break: break-word; }
+    .status-ok { color: var(--ok); }
+    .status-warn { color: var(--warn); }
+    .status-err { color: var(--err); }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+    button {
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: #243247;
+      color: var(--text);
+      border-radius: 8px;
+      padding: 0.5rem 0.85rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    button:hover:not(:disabled) { border-color: var(--accent); background: #2b3d57; }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
+    button.primary {
+      background: rgba(56, 189, 248, 0.18);
+      border-color: var(--accent);
+      color: #e0f2fe;
+    }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .tab-btn.active {
+      background: var(--accent);
+      color: #082f49;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+    .scenario-desc { color: var(--muted); margin: 0 0 0.9rem; font-size: 0.93rem; }
+    .step-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .step-row { display: flex; align-items: center; gap: 0.75rem; }
+    .step-badge {
+      min-width: 1.8rem;
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .step-row.done .step-badge { color: var(--ok); }
+    .step-row.next .step-badge { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="banner">PROTOTYPE — Throwaway State Walkthrough</div>
+    <h1>a2ui-textual Skill Lifecycle &amp; Guardrail Explorer</h1>
+    <p class="intro">
+      Question under test: Does our 3-tier progressive disclosure and A2UI v1.0 + Textual guardrail
+      state model cleanly capture Phase 2 on-stage synthesis via <code>/agy-customizations</code>,
+      Phase 3 cold-session activation via <code>google-antigravity</code>, and strict validation
+      recovery vs raw v0.9 regressions?
+    </p>
+
+    <section aria-labelledby="state-heading">
+      <h2 id="state-heading">Current State</h2>
+      <div class="change-callout" id="last-change">Initialised ready for exploration.</div>
+      <div class="state-grid" id="state-grid"></div>
+    </section>
+
+    <section aria-labelledby="freeplay-heading">
+      <h2 id="freeplay-heading">Free-Play Transitions</h2>
+      <div class="btn-row" id="freeplay-buttons"></div>
+    </section>
+
+    <section aria-labelledby="walkthrough-heading">
+      <h2 id="walkthrough-heading">Guided Walkthroughs</h2>
+      <div class="tabs" id="walkthrough-tabs"></div>
+      <p class="scenario-desc" id="scenario-desc"></p>
+      <div class="step-list" id="scenario-steps"></div>
+    </section>
+  </main>
+
+  <script>
+    // Pure state-machine module (no DOM dependencies; portable out of prototype)
+    const SkillLifecycleModel = (() => {
+      function createInitialState() {
+        return {
+          lifecyclePhase: "Phase 1 · Exploratory Run Complete",
+          disclosureTier: "Tier 0 · Unloaded",
+          skillFilePresent: false,
+          referencesLoaded: false,
+          bindingSyntax: "A2UI v0.9 (legacy 'path')",
+          textVariant: "h1 (invalid in v1.0)",
+          validationGate: "Unchecked",
+          textualRenderOutcome: "Pending",
+          trajectoryClassification: "Unclassified",
+          lastEvent: "Initialised from Exploratory Run friction.",
+          blockedReason: null,
+        };
+      }
+
+      const ACTIONS = {
+        SYNTHESISE_SKILL: {
+          label: "1. Run /agy-customizations synthesis",
+          reduce(state) {
+            return {
+              ...state,
+              lifecyclePhase: "Phase 2 · Skill Synthesised",
+              skillFilePresent: true,
+              disclosureTier: "Tier 1 · Frontmatter Pointer Indexed",
+              trajectoryClassification: "Registered as way_3_bespoke (a2ui-textual)",
+              lastEvent: "Antigravity wrote SKILL.md and references/a2ui-v1-textual-gotchas.md.",
+              blockedReason: null,
+            };
+          },
+        },
+        START_COLD_SESSION: {
+          label: "2. Start Cold SDK Session",
+          reduce(state) {
+            if (!state.skillFilePresent) {
+              return {
+                ...state,
+                lastEvent: "Cannot load Tier 1 pointer before a2ui-textual exists.",
+                blockedReason: "Skill files have not been synthesised yet.",
+              };
+            }
+            return {
+              ...state,
+              lifecyclePhase: "Phase 3 · Cold-Session Verification",
+              disclosureTier: "Tier 1 · Discovery (~100 tokens)",
+              referencesLoaded: false,
+              validationGate: "Awaiting surface emission",
+              textualRenderOutcome: "Pending",
+              lastEvent: "Fresh Agent indexed SKILL.md frontmatter leading words.",
+              blockedReason: null,
+            };
+          },
+        },
+        READ_TIER_2_SKILL: {
+          label: "3. Activate Tier 2 (Read SKILL.md)",
+          reduce(state) {
+            if (!state.skillFilePresent) {
+              return {
+                ...state,
+                lastEvent: "Tier 2 activation skipped: SKILL.md missing.",
+                blockedReason: "Run /agy-customizations synthesis first.",
+              };
+            }
+            return {
+              ...state,
+              disclosureTier: "Tier 2 · Activation (SKILL.md loaded)",
+              lastEvent: "Cold Agent read SKILL.md runbook steps and completion criteria.",
+              blockedReason: null,
+            };
+          },
+        },
+        READ_TIER_3_GOTCHAS: {
+          label: "4. Load Tier 3 (Read references/gotchas)",
+          reduce(state) {
+            if (!state.skillFilePresent) {
+              return {
+                ...state,
+                lastEvent: "Cannot read references/ before skill creation.",
+                blockedReason: "Run /agy-customizations synthesis first.",
+              };
+            }
+            return {
+              ...state,
+              disclosureTier: "Tier 3 · Execution (references/ loaded)",
+              referencesLoaded: true,
+              bindingSyntax: "A2UI v1.0 ('@path' + TemplateChildList 'path')",
+              textVariant: "body / caption (Markdown headings)",
+              lastEvent: "Agent consulted references/a2ui-v1-textual-gotchas.md for v1.0 & Textual traps.",
+              blockedReason: null,
+            };
+          },
+        },
+        EMIT_V09_REGRESSION: {
+          label: "Test Failure: Emit Raw v0.9 + h1",
+          reduce(state) {
+            return {
+              ...state,
+              bindingSyntax: "A2UI v0.9 (legacy 'path')",
+              textVariant: "h1 (rejected by STRICT_VALIDATION)",
+              validationGate: "FAILED (A2uiError + leaked {'path': ...})",
+              textualRenderOutcome: "Empty List cards & Select.BLANK risk",
+              lastEvent: "STRICT_VALIDATION rejected v0.9 Text variant 'h1' and preserved prior surface.",
+              blockedReason: "Payload violated A2UI v1.0 schema.",
+            };
+          },
+        },
+        APPLY_STRICT_AND_RENDER: {
+          label: "5. Validate STRICT & Render in Textual",
+          reduce(state) {
+            if (state.bindingSyntax.includes("v0.9") || state.textVariant.includes("h1")) {
+              return {
+                ...state,
+                validationGate: "FAILED (Blocked by STRICT_VALIDATION)",
+                textualRenderOutcome: "Aborted before mutating live surface",
+                lastEvent: "Staging processor caught v0.9 binding or invalid Text.variant.",
+                blockedReason: "Load Tier 3 guardrails to upgrade payload to v1.0.",
+              };
+            }
+            return {
+              ...state,
+              validationGate: "PASSED (STRICT_VALIDATION)",
+              textualRenderOutcome: "Rendered Tabs, Template Cards, ChoicePicker (Select.NULL)",
+              lastEvent: "Surface validated atomically and rendered cleanly in Textual Pilot.",
+              blockedReason: null,
+            };
+          },
+        },
+        AUDIT_TRAJECTORY: {
+          label: "6. Classify Activation in TrajectoryStore",
+          reduce(state) {
+            const detected = state.disclosureTier.includes("Tier 2") || state.disclosureTier.includes("Tier 3");
+            return {
+              ...state,
+              trajectoryClassification: detected
+                ? "skill_md_read · a2ui-textual -> way_3_bespoke"
+                : "No Skill Activation recorded yet",
+              lastEvent: detected
+                ? "TrajectoryStore matched SKILL.md read and tagged way_3_bespoke."
+                : "No SKILL.md read found in transcript yet.",
+              blockedReason: detected ? null : "Activate Tier 2 before auditing transcript.",
+            };
+          },
+        },
+        RESET: {
+          label: "Reset State",
+          reduce() {
+            return createInitialState();
+          },
+        },
+      };
+
+      const SCENARIOS = [
+        {
+          id: "phase2",
+          title: "1. Phase 2 On-Stage Synthesis",
+          description:
+            "Simulates Act 4 after the Exploratory Run: turning Brain Explorer's EGM discoveries into a 3-tier bespoke skill via /agy-customizations.",
+          steps: ["SYNTHESISE_SKILL", "AUDIT_TRAJECTORY"],
+        },
+        {
+          id: "phase3",
+          title: "2. Phase 3 Cold-Session Disclosure",
+          description:
+            "Simulates starting a brand-new context window with google-antigravity SDK, escalating cleanly through Tier 1 -> Tier 2 -> Tier 3, rendering in Textual, and tagging way_3_bespoke.",
+          steps: [
+            "SYNTHESISE_SKILL",
+            "START_COLD_SESSION",
+            "READ_TIER_2_SKILL",
+            "READ_TIER_3_GOTCHAS",
+            "APPLY_STRICT_AND_RENDER",
+            "AUDIT_TRAJECTORY",
+          ],
+        },
+        {
+          id: "guardrails",
+          title: "3. Guardrails vs v0.9 Failure",
+          description:
+            "Demonstrates how staging STRICT_VALIDATION blocks a legacy v0.9 / h1 emission before touching the live surface, then recovers once Tier 3 gotchas are applied.",
+          steps: [
+            "SYNTHESISE_SKILL",
+            "START_COLD_SESSION",
+            "EMIT_V09_REGRESSION",
+            "APPLY_STRICT_AND_RENDER",
+            "READ_TIER_3_GOTCHAS",
+            "APPLY_STRICT_AND_RENDER",
+          ],
+        },
+      ];
+
+      function dispatch(state, actionKey) {
+        const action = ACTIONS[actionKey];
+        if (!action) return state;
+        return action.reduce(state);
+      }
+
+      return { createInitialState, ACTIONS, SCENARIOS, dispatch };
+    })();
+
+    // Thin throwaway UI shell binding the pure state module to DOM controls
+    (() => {
+      let currentState = SkillLifecycleModel.createInitialState();
+      let activeScenarioId = SkillLifecycleModel.SCENARIOS[0].id;
+      let scenarioStepIndex = 0;
+
+      const lastChangeEl = document.getElementById("last-change");
+      const stateGridEl = document.getElementById("state-grid");
+      const freeplayEl = document.getElementById("freeplay-buttons");
+      const tabsEl = document.getElementById("walkthrough-tabs");
+      const descEl = document.getElementById("scenario-desc");
+      const stepsEl = document.getElementById("scenario-steps");
+
+      function renderState() {
+        lastChangeEl.textContent = currentState.blockedReason
+          ? `${currentState.lastEvent} (Blocked: ${currentState.blockedReason})`
+          : currentState.lastEvent;
+
+        const fields = [
+          ["Lifecycle Phase", currentState.lifecyclePhase, ""],
+          ["Disclosure Tier", currentState.disclosureTier, ""],
+          ["Skill Package Exists", currentState.skillFilePresent ? "Yes (.agents/skills/a2ui-textual/)" : "No", currentState.skillFilePresent ? "status-ok" : "status-warn"],
+          ["Gotchas Reference Loaded", currentState.referencesLoaded ? "Yes (references/a2ui-v1-textual-gotchas.md)" : "No", currentState.referencesLoaded ? "status-ok" : "status-warn"],
+          ["DataBinding Syntax", currentState.bindingSyntax, currentState.bindingSyntax.includes("v1.0") ? "status-ok" : "status-err"],
+          ["Text Variant Rule", currentState.textVariant, currentState.textVariant.includes("body") ? "status-ok" : "status-err"],
+          ["Validation Gate", currentState.validationGate, currentState.validationGate.startsWith("PASSED") ? "status-ok" : currentState.validationGate.startsWith("FAILED") ? "status-err" : "status-warn"],
+          ["Textual Render Outcome", currentState.textualRenderOutcome, currentState.textualRenderOutcome.startsWith("Rendered") ? "status-ok" : ""],
+          ["Trajectory Classification", currentState.trajectoryClassification, currentState.trajectoryClassification.includes("way_3_bespoke") ? "status-ok" : ""],
+        ];
+
+        stateGridEl.innerHTML = "";
+        for (const [label, value, cls] of fields) {
+          const card = document.createElement("div");
+          card.className = "field";
+          const lbl = document.createElement("div");
+          lbl.className = "field-label";
+          lbl.textContent = label;
+          const val = document.createElement("div");
+          val.className = `field-value ${cls}`.trim();
+          val.textContent = value;
+          card.append(lbl, val);
+          stateGridEl.appendChild(card);
+        }
+      }
+
+      function renderFreePlay() {
+        freeplayEl.innerHTML = "";
+        for (const [key, action] of Object.entries(SkillLifecycleModel.ACTIONS)) {
+          const btn = document.createElement("button");
+          btn.textContent = action.label;
+          if (key !== "RESET" && key !== "EMIT_V09_REGRESSION") {
+            btn.className = "primary";
+          }
+          btn.addEventListener("click", () => {
+            currentState = SkillLifecycleModel.dispatch(currentState, key);
+            renderState();
+          });
+          freeplayEl.appendChild(btn);
+        }
+      }
+
+      function renderWalkthrough() {
+        const scenario = SkillLifecycleModel.SCENARIOS.find((s) => s.id === activeScenarioId);
+        tabsEl.innerHTML = "";
+        for (const sc of SkillLifecycleModel.SCENARIOS) {
+          const tab = document.createElement("button");
+          tab.className = `tab-btn ${sc.id === activeScenarioId ? "active" : ""}`;
+          tab.textContent = sc.title;
+          tab.addEventListener("click", () => {
+            activeScenarioId = sc.id;
+            scenarioStepIndex = 0;
+            currentState = SkillLifecycleModel.createInitialState();
+            renderState();
+            renderWalkthrough();
+          });
+          tabsEl.appendChild(tab);
+        }
+
+        descEl.textContent = scenario.description;
+        stepsEl.innerHTML = "";
+        scenario.steps.forEach((actionKey, idx) => {
+          const row = document.createElement("div");
+          const isDone = idx < scenarioStepIndex;
+          const isNext = idx === scenarioStepIndex;
+          row.className = `step-row ${isDone ? "done" : isNext ? "next" : ""}`;
+
+          const badge = document.createElement("span");
+          badge.className = "step-badge";
+          badge.textContent = isDone ? "DONE" : `#${idx + 1}`;
+
+          const btn = document.createElement("button");
+          btn.textContent = SkillLifecycleModel.ACTIONS[actionKey].label;
+          if (isNext) btn.className = "primary";
+          btn.disabled = !isNext;
+          btn.addEventListener("click", () => {
+            currentState = SkillLifecycleModel.dispatch(currentState, actionKey);
+            scenarioStepIndex += 1;
+            renderState();
+            renderWalkthrough();
+          });
+
+          row.append(badge, btn);
+          stepsEl.appendChild(row);
+        });
+      }
+
+      renderState();
+      renderFreePlay();
+      renderWalkthrough();
+    })();
+  </script>
+</body>
+</html>

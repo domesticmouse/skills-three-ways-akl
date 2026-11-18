@@ -79,6 +79,10 @@ def test_skill_activation_detection_and_tiers(tmp_path: Path) -> None:
                         "args": {"Path": str(workspace_dir / ".agents/skills/agy-brain-explorer/SKILL.md")},
                     },
                     {
+                        "name": "read_file",
+                        "args": {"Path": str(workspace_dir / ".agents/skills/a2ui-textual/SKILL.md")},
+                    },
+                    {
                         "name": "view_file",
                         "args": {"AbsolutePath": str(target_file)},
                     },
@@ -120,12 +124,14 @@ def test_skill_activation_detection_and_tiers(tmp_path: Path) -> None:
     assert by_name["egm-design"].tier == "way_1_plugin"
     assert by_name["agy-brain-explorer"].activation_kind == "skill_md_read"
     assert by_name["agy-brain-explorer"].tier == "way_3_bespoke"
+    assert by_name["a2ui-textual"].activation_kind == "skill_md_read"
+    assert by_name["a2ui-textual"].tier == "way_3_bespoke"
     assert by_name["grilling"].activation_kind == "slash_command"
 
     detail = store.inspect_session("aaaa1111")
     assert detail.models_used == ["Gemini 3 Pro"]
     assert detail.steps[1].step_index == 1
-    assert any(tc.tool_name == "read_file" and tc.count == 2 for tc in detail.tool_counts)
+    assert any(tc.tool_name == "read_file" and tc.count == 3 for tc in detail.tool_counts)
 
     step_detail = store.inspect_step("aaaa1111", 1)
     assert step_detail.thinking == "Inspecting skills and workspace carefully."
