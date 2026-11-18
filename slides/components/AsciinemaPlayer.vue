@@ -147,6 +147,7 @@ const currentSegmentIdx = ref<number>(0)
 const isPlaying = ref<boolean>(false)
 const statusText = ref<string>('Ready (Paused)')
 const statusMode = ref<'' | 'playing' | 'paused-marker'>('')
+const castMissing = ref<boolean>(false)
 
 let playerInstance: any = null
 let resizeObserver: ResizeObserver | null = null
@@ -544,6 +545,7 @@ function stepNextChapter() {
 }
 
 function handleStageKeydown(e: KeyboardEvent) {
+  if (castMissing.value) return
   const targetTag = (e.target as HTMLElement | null)?.tagName
   if (targetTag && ['INPUT', 'SELECT', 'TEXTAREA'].includes(targetTag)) return
   if (e.key === '[') {
@@ -574,7 +576,28 @@ async function initPlayer() {
     const resolvedSrc = resolveUrl(props.src)
 
     const resp = await fetch(resolvedSrc)
+    if (!resp.ok) {
+      castMissing.value = true
+      return
+    }
     const rawCastText = await resp.text()
+    const firstContentLine = rawCastText
+      .split(/\r?\n/)
+      .find((l) => l.trim() && !l.trim().startsWith('#'))
+    if (!firstContentLine || !firstContentLine.trim().startsWith('{')) {
+      castMissing.value = true
+      return
+    }
+    try {
+      JSON.parse(firstContentLine)
+    } catch {
+      castMissing.value = true
+      return
+    }
+    if (castMissing.value) {
+      castMissing.value = false
+      await nextTick()
+    }
 
     const { v2Text, foundChapters, computedSegments } = prepareCastForPlayer(
       rawCastText,
@@ -732,8 +755,17 @@ watch(
 
 <template>
   <div class="asciinema-player-wrapper">
+    <!-- Placeholder fallback when the target .cast file has not yet been recorded/synced -->
+    <div v-if="castMissing" class="w-full h-full flex flex-col justify-center">
+      <slot>
+        <div class="p-6 rounded-xl bg-gray-900/80 border border-gray-800 text-center text-gray-300 font-mono text-sm">
+          Pending asciinema recording: {{ props.src }}
+        </div>
+      </slot>
+    </div>
+
     <!-- Optional Development Chapter Controls & Live Speed Bar (enabled via showChapterBar: true) -->
-    <div v-if="props.showChapterBar && chapters.length > 0" class="asciinema-chapter-header">
+    <div v-if="!castMissing && props.showChapterBar && chapters.length > 0" class="asciinema-chapter-header">
       <div class="asciinema-header-top">
         <div class="asciinema-chapter-pills">
           <button
@@ -797,9 +829,9 @@ watch(
       </div>
     </div>
 
-    <div ref="containerRef" class="asciinema-player-element" />
+    <div v-show="!castMissing" ref="containerRef" class="asciinema-player-element" />
 
-    <div class="asciinema-speed-hint" :class="getSpeedTier(currentSpeed)">
+    <div v-show="!castMissing" class="asciinema-speed-hint" :class="getSpeedTier(currentSpeed)">
       <span>Playback speed: <strong>{{ currentSpeed }}x</strong></span>
       <template v-if="props.showChapterBar && currentSegment">
         <span>·</span>
