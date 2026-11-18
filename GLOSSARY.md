@@ -9,7 +9,7 @@ The three-tier classification of AI agent skills used as the spine of the talk: 
 _Avoid_: Skill categories, skill levels
 
 **Brain Explorer**:
-The companion Python CLI and Textualize (`Textual`) TUI application built during the talk to discover, inspect, and compare Antigravity session trajectories.
+The companion Python CLI and Textualize (`Textual`) TUI application built during the talk to discover, inspect, and compare Antigravity session trajectories, rendering A2UI v1.0 generative surfaces composed by the SDK agent alongside fast local trajectory views.
 _Avoid_: Demo app, trajectory viewer, admin dashboard
 
 **Session Trajectory**:
