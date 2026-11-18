@@ -79,27 +79,23 @@ fit: both
       CAST Placeholder &middot; 6 Stop Points (m1&ndash;m6)
     </span>
   </div>
-
   <div class="space-y-2 text-xs font-mono">
     <div class="p-3 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1">
       <div class="text-cyan-300 font-semibold">m1 &rarr; m2 &middot; Before / After: Install find-skills</div>
       <div class="text-gray-400">m1: Clean <code>zsh</code> prompt ready</div>
       <div class="text-gray-200">m2: <code>npx skills add vercel-labs/skills@find-skills -g -y</code></div>
     </div>
-
     <div class="p-3 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1">
       <div class="text-cyan-300 font-semibold">m3 &rarr; m4 &middot; Before / After: Launch agy</div>
       <div class="text-gray-400">m3: <code>find-skills</code> installation finished; <code>zsh</code> prompt ready</div>
       <div class="text-gray-200">m4: <code>agy</code></div>
     </div>
-
     <div class="p-3 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1">
       <div class="text-cyan-300 font-semibold">m5 &rarr; m6 &middot; Before / After: Verify Way 1 plugins prompt</div>
       <div class="text-gray-400">m5: <code>agy</code> banner loaded and <code>&gt;</code> prompt box empty</div>
       <div class="text-gray-200 leading-relaxed">m6: <code>/plugin Please check that the Google Antigravity SDK plugin (google-antigravity-sdk) and the EGM review subagents are enabled for this workspace, and show me what skills and specialist agents they provide.</code></div>
     </div>
   </div>
-
   <div class="text-[11px] font-mono text-gray-500 pt-1">
     Awaiting <code>recordings/final/way-1-plugins-setup.cast</code> &mdash; switches automatically to <code>asciinema-player</code> once synced.
   </div>

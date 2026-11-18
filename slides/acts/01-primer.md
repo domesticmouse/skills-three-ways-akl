@@ -4,18 +4,15 @@ class: text-center
 
 <!-- S1-01 -->
 <div class="h-full flex flex-col items-center justify-center">
-
   <h1 class="text-5xl font-extrabold tracking-tight text-white mb-3">
     Skills Three Ways
   </h1>
   <p class="text-2xl text-gray-300 font-light max-w-2xl">
     Ecosystem, Community, and Bespoke Agent Skills in Action
   </p>
-
   <div class="mt-10 text-gray-400 text-base">
     <span class="font-semibold text-gray-200">Brett Morgan</span> &middot; Developer Relations Engineer, Google Cloud
   </div>
-
   <div class="mt-10 text-xs text-gray-500">
     Press <kbd>Space</kbd> or <kbd>&rarr;</kbd> to advance
   </div>
@@ -181,7 +178,6 @@ layout: default
       <li><strong>Result:</strong> Degraded reasoning and lost focus.</li>
     </ul>
   </div>
-
   <div class="p-5 rounded-xl bg-emerald-950/15 border border-emerald-500/30 space-y-3">
     <div class="text-xs font-mono text-emerald-400 uppercase">The Solution: Progressive Disclosure</div>
     <h3 class="text-lg font-bold text-white">Modular, Self-Contained Skill Packages</h3>
@@ -307,7 +303,6 @@ description: >-
       A unique, lowercase, hyphenated identifier that <strong>must match the parent directory name</strong>.
     </p>
   </div>
-
   <div class="p-4 rounded-xl bg-gray-900 border border-gray-800">
     <div class="font-mono font-bold text-cyan-300 mb-1"><code>description</code> (The Routing Trigger)</div>
     <p class="text-gray-400 leading-relaxed">

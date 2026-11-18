@@ -77,21 +77,18 @@ fit: both
       CAST Placeholder &middot; 4 Stop Points (m1&ndash;m4)
     </span>
   </div>
-
   <div class="space-y-3 text-xs font-mono">
     <div class="p-3.5 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1.5">
       <div class="text-amber-300 font-semibold">m1 &rarr; m2 &middot; Before / After: Search Python &amp; Textual skills prompt</div>
       <div class="text-gray-400">m1: <code>agy</code> prompt box empty</div>
       <div class="text-gray-200 leading-relaxed">m2: <code>We want to build Brain Explorer&mdash;a Python CLI and Textual TUI powered by the Google Antigravity SDK to inspect our ~/.gemini session trajectories. Use find-skills to search for Python and Textual TUI skills.</code></div>
     </div>
-
     <div class="p-3.5 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1.5">
       <div class="text-amber-300 font-semibold">m3 &rarr; m4 &middot; Before / After: Install wshobson/agents Python skills prompt</div>
       <div class="text-gray-400">m3: <code>npx skills find python</code> and <code>npx skills find textual</code> evaluation complete; prompt box ready</div>
       <div class="text-gray-200 leading-relaxed">m4: <code>Let's install the Python development skills from wshobson/agents into this repo so our agents follow uv, strict typing, async, and testing conventions.</code></div>
     </div>
   </div>
-
   <div class="text-[11px] font-mono text-gray-500 pt-1">
     Awaiting <code>recordings/final/way-2-find-skills.cast</code> &mdash; switches automatically to <code>asciinema-player</code> once synced.
   </div>
@@ -154,7 +151,6 @@ layout: default
       <li><strong>Result:</strong> Sluggish TUI that contaminates the very dataset it inspects.</li>
     </ul>
   </div>
-
   <div class="p-5 rounded-xl bg-emerald-950/15 border border-emerald-500/30 space-y-3">
     <div class="text-xs font-mono text-emerald-400 uppercase">The Solution: EGM Cycle 1 Hybrid Architecture</div>
     <h3 class="text-lg font-bold text-white">Deterministic Local TrajectoryStore + Isolated Read-Only AgentService</h3>
@@ -193,21 +189,18 @@ fit: both
       CAST Placeholder &middot; 4 Stop Points (m1&ndash;m4)
     </span>
   </div>
-
   <div class="space-y-3 text-xs font-mono">
     <div class="p-3.5 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1.5">
       <div class="text-purple-300 font-semibold">m1 &rarr; m2 &middot; Before / After: Cycle 1 design &amp; EGM audit prompt</div>
       <div class="text-gray-400">m1: <code>agy</code> prompt box empty</div>
       <div class="text-gray-200 leading-relaxed">m2: <code>Using google-antigravity-sdk, agy-brain-explorer, and our Python skills, design a Brain Explorer Python CLI and Textual TUI that inspects ~/.gemini session trajectories and skill activations, then run an EGM review cycle (egm-design, egm-zoom-out, egm-codebase-details, egm-implementation-readiness) on the design.</code></div>
     </div>
-
     <div class="p-3.5 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1.5">
       <div class="text-purple-300 font-semibold">m3 &rarr; m4 &middot; Before / After: Cycle 2 implement &amp; EGM audit prompt</div>
       <div class="text-gray-400">m3: Cycle 1 resolution summary rendered; prompt box ready</div>
       <div class="text-gray-200 leading-relaxed">m4: <code>Implement the hybrid TrajectoryStore, isolated AgentService, and Textual A2UI v1.0 renderer, then run a second EGM review pass and verify with ruff, mypy, and pytest.</code></div>
     </div>
   </div>
-
   <div class="text-[11px] font-mono text-gray-500 pt-1">
     Awaiting <code>recordings/final/way-2-egm-cycle.cast</code> &mdash; switches automatically to <code>asciinema-player</code> once synced.
   </div>

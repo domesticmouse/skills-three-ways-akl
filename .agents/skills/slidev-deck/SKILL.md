@@ -109,7 +109,7 @@ Follow the slide design conventions below. For copy-pasteable HTML/Markdown temp
    </ol>
    ```
    When comparing 3–4 broad paradigms (e.g., MCP vs. Rules vs. Skills), give each concept its own focused numbered-list slide followed by a synthesis slide rather than squeezing all columns into one tiny table.
-3. **Flush Code Fences Inside HTML**: Place markdown fenced code blocks (` ``` `) flush at column 0 with blank lines above and below whenever they sit inside HTML `<div>` wrappers. Indenting a fenced code block by 4+ spaces inside HTML causes Markdown to render raw tags instead of highlighted code.
+3. **Flush Code Fences & No Blank Lines in Nested HTML**: Place markdown fenced code blocks (` ``` `) flush at column 0 with blank lines above and below whenever they sit inside HTML `<div>` wrappers. Indenting a fenced code block by 4+ spaces inside HTML causes Markdown to render raw tags instead of highlighted code. Likewise, CommonMark closes HTML blocks on blank lines and parses any subsequent line indented by 4+ spaces (`    <div ...>`) as a raw `<pre><code>` code block, so nested HTML `<div>` trees must not contain blank lines (except around column-0 fenced code blocks).
 4. **Conversational Presenter Notes**: Conclude every slide with an HTML comment (`<!-- ... -->`) containing natural spoken narrative that explains the transition and talking points behind each bullet. Write pure spoken prose without bracketed stage directions (`[Click]`, `[Next slide]`).
 
 #### Choosing a Slide Layout:

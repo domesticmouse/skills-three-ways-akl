@@ -76,21 +76,18 @@ fit: both
       CAST Placeholder &middot; 4 Stop Points (m1&ndash;m4)
     </span>
   </div>
-
   <div class="space-y-3 text-xs font-mono">
     <div class="p-3.5 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1.5">
       <div class="text-emerald-300 font-semibold">m1 &rarr; m2 &middot; Before / After: /agy-customizations synthesis prompt</div>
       <div class="text-gray-400">m1: <code>agy</code> prompt box empty</div>
       <div class="text-gray-200 leading-relaxed">m2: <code>/agy-customizations Please turn what we learned building and reviewing our A2UI v1.0 Textual renderer and Antigravity SDK integration into a reusable workspace skill</code></div>
     </div>
-
     <div class="p-3.5 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1.5">
       <div class="text-emerald-300 font-semibold">m3 &rarr; m4 &middot; Before / After: Phase 3 cold-session verification prompt</div>
       <div class="text-gray-400">m3: <code>.agents/skills/a2ui-textual/</code> synthesised and registered; cold-session prompt box empty</div>
       <div class="text-gray-200 leading-relaxed">m4: <code>Build an A2UI v1.0 surface for our Python Textual TUI that compares Skill Activations across Way 1 plugins, Way 2 community skills, and Way 3 bespoke skills with interactive tabs and a tier filter.</code></div>
     </div>
   </div>
-
   <div class="text-[11px] font-mono text-gray-500 pt-1">
     Awaiting <code>recordings/final/way-3-agy-customizations.cast</code> &mdash; switches automatically to <code>asciinema-player</code> once synced.
   </div>
@@ -197,27 +194,23 @@ fit: both
       CAST Placeholder &middot; 6 Stop Points (m1&ndash;m6)
     </span>
   </div>
-
   <div class="space-y-2 text-xs font-mono">
     <div class="p-3 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1">
       <div class="text-emerald-300 font-semibold">m1 &rarr; m2 &middot; Before / After: CLI sessions overview command</div>
       <div class="text-gray-400">m1: Clean <code>zsh</code> prompt ready</div>
       <div class="text-gray-200">m2: <code>uv run brain-explorer sessions --project skills-three-ways-akl</code></div>
     </div>
-
     <div class="p-3 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1">
       <div class="text-emerald-300 font-semibold">m3 &rarr; m4 &middot; Before / After: Launch Brain Explorer TUI command</div>
       <div class="text-gray-400">m3: CLI sessions table rendered; <code>zsh</code> prompt ready</div>
       <div class="text-gray-200">m4: <code>uv run brain-explorer</code></div>
     </div>
-
     <div class="p-3 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1">
       <div class="text-emerald-300 font-semibold">m5 &rarr; m6 &middot; Before / After: In-TUI A2UI v1.0 prompt</div>
       <div class="text-gray-400">m5: <strong>Brain Explorer</strong> TUI open (<code>Ctrl+B</code> sidebar browsed), <code>/</code> prompt input focused and empty</div>
       <div class="text-gray-200 leading-relaxed">m6: <code>Compare how Way 1 plugin skills, Way 2 community skills, and Way 3 bespoke skills were activated across our Brain Explorer build sessions, and group them into an interactive A2UI v1.0 tabbed breakdown.</code></div>
     </div>
   </div>
-
   <div class="text-[11px] font-mono text-gray-500 pt-1">
     Awaiting <code>recordings/final/way-3-brain-explorer-payoff.cast</code> &mdash; switches automatically to <code>asciinema-player</code> once synced.
   </div>
@@ -317,7 +310,6 @@ layout: default
       Full Slidev deck (<code>slides/</code>), chapter-marked <code>asciinema</code> recordings (<code>recordings/final/</code>), Brain Explorer Textual TUI, and <code>.agents/skills/a2ui-textual/</code>.
     </p>
   </div>
-
   <div class="p-4 rounded-xl bg-gray-900 border border-gray-800">
     <div class="flex items-center justify-between">
       <div class="text-xs font-mono text-amber-400 uppercase tracking-wide">Open Agent Skills Ecosystem &amp; CLI</div>
@@ -330,7 +322,6 @@ layout: default
       Discover, evaluate, and lock community workflow skills (<code>vercel-labs/skills@find-skills</code>, <code>wshobson/agents</code>).
     </p>
   </div>
-
   <div class="p-4 rounded-xl bg-gray-900 border border-gray-800">
     <div class="flex items-center justify-between">
       <div class="text-xs font-mono text-emerald-400 uppercase tracking-wide">Google Antigravity &amp; Python SDK</div>
