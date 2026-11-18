@@ -71,34 +71,34 @@ For each recording below, sanitise secrets (`sanitize-cast.py`), strip trailing 
 
 Implement the 23 locked slides across Acts 2–4 per [Lock the slide-by-slide layout blueprint and speaker notes for Acts 2–4 in slides/acts/](https://github.com/domesticmouse/skills-three-ways-akl/issues/8), following `/slidev-deck` and `/bjm-voice`.
 
-- [ ] **Author `slides/acts/02-way-1-plugins.md` (~8 mins, 6 slides: `S2-01`–`S2-06`)**
+- [x] **Author `slides/acts/02-way-1-plugins.md` (~8 mins, 6 slides: `S2-01`–`S2-06`)**
   - `S2-01` (`layout: center`): Way 1 Act Divider
   - `S2-02` (`layout: default`): *What Official Plugins Bring to the Table*
-  - `S2-03` (`layout: cast-full`): `/casts/way-1-plugins-setup.cast`
+  - `S2-03` (`layout: cast-full`): `/casts/way-1-plugins-setup.cast` *(placeholder card in place; auto-switches to `asciinema-player` once synced)*
   - `S2-04` (`layout: skill-breakdown`, `way: 1`): *Inside `google-antigravity-sdk`: In-Process Agent & `LocalAgentConfig`*
   - `S2-05` (`layout: skill-breakdown`, `way: 1`): *Inside the EGM Plugin: Specialist Review Subagents*
   - `S2-06` (`layout: default`): *Way 1 Takeaway: Guardrails Before We Write a Line of Python*
-- [ ] **Author `slides/acts/03-way-2-community.md` (~10 mins, 8 slides: `S3-01`–`S3-08`)**
+- [x] **Author `slides/acts/03-way-2-community.md` (~10 mins, 8 slides: `S3-01`–`S3-08`)**
   - `S3-01` (`layout: center`): Way 2 Act Divider
   - `S3-02` (`layout: default`): *Evaluating Community Skills with `find-skills`*
-  - `S3-03` (`layout: cast-full`): `/casts/way-2-find-skills.cast`
+  - `S3-03` (`layout: cast-full`): `/casts/way-2-find-skills.cast` *(placeholder card in place; auto-switches to `asciinema-player` once synced)*
   - `S3-04` (`layout: skill-breakdown`, `way: 2`): *What We Installed vs. The Gap We Found*
   - `S3-05` (`layout: default`): *EGM Cycle 1: Naive Full-Delegation vs. Hybrid Architecture* (2-column red/emerald split)
-  - `S3-06` (`layout: cast-full`): `/casts/way-2-egm-cycle.cast`
+  - `S3-06` (`layout: cast-full`): `/casts/way-2-egm-cycle.cast` *(placeholder card in place; auto-switches to `asciinema-player` once synced)*
   - `S3-07` (`layout: skill-breakdown`, `way: mashup`): *EGM Cycle 2 Part 1: A2UI v1.0 Protocol & Schema Traps*
   - `S3-08` (`layout: skill-breakdown`, `way: mashup`): *EGM Cycle 2 Part 2: Textual Widget & Runtime Isolation Traps*
-- [ ] **Author `slides/acts/04-way-3-bespoke.md` (~12 mins, 9 slides: `S4-01`–`S4-09`)**
+- [x] **Author `slides/acts/04-way-3-bespoke.md` (~12 mins, 9 slides: `S4-01`–`S4-09`)**
   - `S4-01` (`layout: center`): Way 3 Act Divider
   - `S4-02` (`layout: default`): *Bespoke Skills Already Powering This Repo*
-  - `S4-03` (`layout: cast-full`): `/casts/way-3-agy-customizations.cast`
+  - `S4-03` (`layout: cast-full`): `/casts/way-3-agy-customizations.cast` *(placeholder card in place; auto-switches to `asciinema-player` once synced)*
   - `S4-04` (`layout: skill-breakdown`, `way: 3`): *Inside `.agents/skills/a2ui-textual/SKILL.md` (Tiers 1 & 2)*
   - `S4-05` (`layout: skill-breakdown`, `way: 3`): *Inside `references/a2ui-v1-textual-gotchas.md` (Tier 3 Deep Context)*
-  - `S4-06` (`layout: cast-full`): `/casts/way-3-brain-explorer-payoff.cast`
+  - `S4-06` (`layout: cast-full`): `/casts/way-3-brain-explorer-payoff.cast` *(placeholder card in place; auto-switches to `asciinema-player` once synced)*
   - `S4-07` (`layout: skill-breakdown`, `way: mashup`): *What Brain Explorer Revealed: 4 Build Trajectories Across Three Ways*
   - `S4-08` (`layout: default`): *Skills Three Ways: Choosing the Right Tier for the Job*
   - `S4-09` (`layout: default`): *Links & Resources*
-- [ ] **Wire `slides/slides.md`**: Append `src: ./acts/02-way-1-plugins.md`, `src: ./acts/03-way-2-community.md`, and `src: ./acts/04-way-3-bespoke.md`.
-- [ ] **Formatting & Voice Audit**:
+- [x] **Wire `slides/slides.md`**: Append `src: ./acts/02-way-1-plugins.md`, `src: ./acts/03-way-2-community.md`, and `src: ./acts/04-way-3-bespoke.md`.
+- [x] **Formatting & Voice Audit**:
   - Confirm every slide has a unique `<!-- S#-## -->` anchor tag, clean `<h2>` flex header (or dedicated layout title), and `<ol>` numbered concept lists where specified.
   - Confirm all fenced code blocks inside HTML `<div>` containers sit flush at column 0 with blank lines above and below.
   - Confirm Australian English spelling (`realise`, `colour`, `labelled`, `organisation`, `modelled`) and conversational speaker notes with zero bracketed stage directions (`[Click]`, `[Next slide]`).
@@ -111,12 +111,12 @@ Implement the 23 locked slides across Acts 2–4 per [Lock the slide-by-slide la
   - Start the dev server via `.agents/skills/slidev-deck/scripts/slides-server.sh start` and confirm `RUNNING` (`HTTP: 200` / `304`) via `status`.
   - Inspect all 36 slides across `http://localhost:3030/`, `/presenter` (speaker notes + timer), and `/overview`.
   - Test `[` / `]` / `p` chapter navigation and playback timing (`<= 30s` per segment at `speed: 2.0`) across all 6 embedded `.cast` players.
-- [ ] **Verify Static Production Build**:
-  - Run `npm --prefix slides run build` and confirm exit code `0` producing `slides/dist/index.html`.
+- [x] **Verify Static Production Build**:
+  - Run `npm --prefix slides run build` and confirm exit code `0` producing `slides/dist/index.html` (`--base /skills-three-ways-akl/`).
 - [ ] **Configure Automated GitHub Pages Deployment**:
-  - Create `.github/workflows/deploy-slides.yml` from `.agents/skills/slidev-deck/resources/deploy-slides.yml` with `on.push.paths` covering `'slides/**'` and `'recordings/final/**'`.
-  - Verify repository GitHub Pages settings use **Build and deployment > Source: GitHub Actions**.
+  - [x] Create `.github/workflows/deploy-slides.yml` from `.agents/skills/slidev-deck/resources/deploy-slides.yml` with `on.push.paths` covering `'slides/**'` and `'recordings/final/**'` (plus `slides/package-lock.json` for `npm ci`).
+  - [ ] Verify repository GitHub Pages settings use **Build and deployment > Source: GitHub Actions** (`gh api repos/domesticmouse/skills-three-ways-akl/pages` currently returns `404` until enabled in GitHub repository Settings).
 - [ ] **Final Repo Hygiene & Map Closure**:
-  - Run `uv run ruff check src tests`, `uv run mypy src`, and `uv run pytest -v` to confirm **Brain Explorer** checks remain green on `main`.
-  - Update `README.md` with setup and run instructions for **Brain Explorer** and the Slidev deck.
-  - Do a timed dry run (~35 mins talk + 5 mins Q&A) and close [Skills Three Ways: DevFest Auckland 2026 Talk & Brain Explorer App](https://github.com/domesticmouse/skills-three-ways-akl/issues/1).
+  - [x] Run `uv run ruff check src tests`, `uv run mypy src`, and `uv run pytest -v` to confirm **Brain Explorer** checks remain green on `main`.
+  - [x] Update `README.md` with setup and run instructions for **Brain Explorer** and the Slidev deck.
+  - [ ] Do a timed dry run (~35 mins talk + 5 mins Q&A) and close [Skills Three Ways: DevFest Auckland 2026 Talk & Brain Explorer App](https://github.com/domesticmouse/skills-three-ways-akl/issues/1).
