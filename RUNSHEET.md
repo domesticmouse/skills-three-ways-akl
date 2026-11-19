@@ -63,11 +63,26 @@ The `/asciinema` skill and processing scripts (`sanitize-cast.py`, `trim-cast.py
 ls -la .agents/skills/asciinema/scripts/{sanitize-cast.py,trim-cast.py,mark-cast.py}
 ```
 
-### 2.3 Pre-Flight Checklist
+### 2.3 Pre-Roll: Uninstall Way 1 Plugins
+
+Before starting Recording 1, uninstall the Way 1 plugins so they can be installed fresh on camera via `/plugin`:
+
+1. Launch `agy` and invoke `/plugin` to open the interactive plugin manager menu.
+2. Uninstall the five Way 1 plugins required for this adventure (plus **Google Cloud Developer** if you plan to install or highlight it on camera):
+   1. **Google Antigravity SDK** (`google-antigravity-sdk` · catalog ID: `antigravity-plugins-official/plugin/google-antigravity-sdk`) — provides the `google-antigravity-sdk` skill (`Agent`, `LocalAgentConfig`, `skills_paths`, `policy`, `BudgetConfig`).
+   2. **Elephant-Goldfish Model** (`egm` · catalog ID: `antigravity-plugins-official/plugin/egm`) — provides the **EGM** specialist review subagents (`egm-design`, `egm-zoom-out`, `egm-codebase-details`, `egm-implementation-readiness`).
+   3. **Chrome DevTools** (`chrome-devtools-plugin` · catalog ID: `antigravity-plugins-official/plugin/chrome-devtools-plugin`) — provides the Chrome DevTools MCP server and skills (`chrome-devtools`, `a11y-debugging`, `debug-optimize-lcp`, `troubleshooting`) for browser automation and inspecting the Slidev deck and web players.
+   4. **Google Developer Knowledge** (`google-developer-knowledge` · catalog ID: `antigravity-plugins-official/plugin/google-developer-knowledge`) — provides the Developer Knowledge MCP server (`search_documents`, `get_documents`, `answer_query`) and `retrieving-developer-knowledge` skill for grounded official documentation across Google Cloud, Gemini, Android, Firebase, Flutter, and Web.
+   5. **Modern Web Guidance** (`modern-web-guidance-plugin` · catalog ID: `antigravity-plugins-official/plugin/modern-web-guidance-plugin`) — provides the `modern-web-guidance` skill to keep the coding agent current on modern HTML/CSS, client-side JS, and web component best practices.
+   6. *(Cloud Hosting Callout)* **Google Cloud Developer** (`google-cloud-developer` · catalog ID: `antigravity-plugins-official/plugin/google-cloud-developer`) — uninstall if you also want to install or highlight it on camera for hosting in the cloud (`finding-google-skills`, `gcloud` CLI safety guardrails, `google-cloud-recipe-auth`, and `google-cloud-recipe-onboarding`).
+3. Close the `/plugin` menu and exit `agy` (`Ctrl+D` twice).
+
+### 2.4 Pre-Flight Checklist
 
 - [ ] **Terminal geometry**: Open **Ghostty** (`xterm-ghostty`) sized to **120 columns × 36 rows** (`120x36`) matching `nuttxspace/EXPERIMENT_RUNBOOK.md`.
 - [ ] **CLI versions**: `asciinema` (3.x recording `asciicast v3`), `agy`, `npx`, `uv`, `python3`, and `node` verified on `PATH`.
 - [ ] **`/asciinema` scripts**: `sanitize-cast.py`, `trim-cast.py`, and `mark-cast.py` accessible; `uv run --with pyte` tested cleanly.
+- [ ] **Pre-roll plugins uninstalled**: **Google Antigravity SDK** (`google-antigravity-sdk`), **Elephant-Goldfish Model** (`egm`), **Chrome DevTools** (`chrome-devtools-plugin`), **Google Developer Knowledge** (`google-developer-knowledge`), and **Modern Web Guidance** (`modern-web-guidance-plugin`) — plus **Google Cloud Developer** (`google-cloud-developer`) if installing on camera — are uninstalled prior to Recording 1.
 - [ ] **Git commit anchors noted**:
   - `97ab6fc` — Domain docs, `find-skills`, and `wshobson/agents` Python skills (pre-**Brain Explorer** baseline).
   - `45d1905` — **Brain Explorer** A2UI v1.0 Textual TUI and `TrajectoryStore` implementation.
@@ -75,7 +90,7 @@ ls -la .agents/skills/asciinema/scripts/{sanitize-cast.py,trim-cast.py,mark-cast
   - `8b62665` — `TODO.md` checklist on `main`.
 - [ ] **Workspace hygiene**: If re-recording state-mutating takes (Recordings 1–4), run in a clean scratch branch/worktree or reset transient edits between takes so `main` stays pristine for Recording 5.
 
-### 2.4 `asciinema rec` Guardrails & Interactive Hotkeys
+### 2.5 `asciinema rec` Guardrails & Interactive Hotkeys
 
 - **Required flags**: Always record with `-i 2.0 --window-size 120x36 --overwrite` so idle pauses cap at `2.0s`, dimensions stay locked to `120x36`, and retakes overwrite cleanly.
 - **Security guardrail**: **Never** pass `-I` / `--stdin` to `asciinema rec` (keeps raw keystrokes and any typed tokens out of the `.cast`).
@@ -84,14 +99,14 @@ ls -la .agents/skills/asciinema/scripts/{sanitize-cast.py,trim-cast.py,mark-cast
   - `Ctrl+x`: Optional live `"m"` marker during capture (refined afterwards in post-processing).
   - `Ctrl+D` twice inside `agy`, then `Ctrl+D` / `exit` in `zsh`: Ends the capture cleanly.
 
-### 2.5 Paired Before / After Chapter Marker Convention
+### 2.6 Paired Before / After Chapter Marker Convention
 
 [`AsciinemaPlayer.vue`](slides/components/AsciinemaPlayer.vue) enables `pauseOnMarkers: true` whenever `"m"` markers exist and computes per-segment playback speeds (`>= 2.0x`, completing each segment in `<= 30s`). Every command or prompt uses a **Before / After** stop-point pair:
 
 - **Before (`m1`, `m3`, `m5`)**: Settled, empty prompt (`zsh` prompt or settled `agy` `? for shortcuts` / TUI `/` input box). Pause here to frame what you are about to ask.
 - **After (`m2`, `m4`, `m6`)**: Complete command or prompt echoed in normal video (`[UNREV]`, cursor on the command line before execution output starts). Advance once with `]` to show the prompt clearly, then hit `]` (or `p`) to play execution at accelerated speed to the next settled prompt.
 
-### 2.6 Standard Post-Processing Pipeline (Per `.cast` File)
+### 2.7 Standard Post-Processing Pipeline (Per `.cast` File)
 
 1. **Sanitise secrets & OSC sequences** (preserves 0-based event indices `#0000..#NNNN`):
    ```bash
@@ -148,7 +163,7 @@ ls -la .agents/skills/asciinema/scripts/{sanitize-cast.py,trim-cast.py,mark-cast
 
 #### Pre-Step State Checks
 
-- Verify `google-antigravity-sdk` and `egm` plugins are installed and enabled for `agy`, and remove any stale local `find-skills` state if you want the global `npx skills add` install to read freshly on camera.
+- Confirm **Google Antigravity SDK** (`google-antigravity-sdk`), **Elephant-Goldfish Model** (`egm`), **Chrome DevTools** (`chrome-devtools-plugin`), **Google Developer Knowledge** (`google-developer-knowledge`), and **Modern Web Guidance** (`modern-web-guidance-plugin`) — plus **Google Cloud Developer** (`google-cloud-developer`) if installing it on camera — have been uninstalled in the pre-roll (so they can be installed on camera via `/plugin`), and remove any stale local `find-skills` state if you want the global `npx skills add` install to read freshly on camera.
 - Confirm you are on a clean `zsh` prompt at `/Users/brett/Documents/GitHub/skills-three-ways-akl`.
 
 #### Start Recording
@@ -171,12 +186,22 @@ asciinema rec -i 2.0 --window-size 120x36 --overwrite \
    agy
    ```
 5. Wait until the `agy` banner finishes loading and the `>` prompt box settles at `? for shortcuts` (`m5`).
-6. Paste and submit the Way 1 verification prompt (`m6`):
+6. Type `/plugin` and press `Enter` (`m6` sits on `/plugin` in the prompt box before the interactive menu opens):
    ```text
-   /plugin Please check that the Google Antigravity SDK plugin (google-antigravity-sdk) and the EGM review subagents are enabled for this workspace, and show me what skills and specialist agents they provide.
+   /plugin
    ```
-7. Wait for `agy` to list the enabled `google-antigravity-sdk` skills and **EGM** specialist review subagents and settle at an idle `>` prompt.
-8. Exit `agy` (`Ctrl+D` twice), then exit `zsh` (`exit` or `Ctrl+D`).
+7. Inside the interactive `/plugin` menu, select and install the five Way 1 plugins required for this adventure:
+   1. **Google Antigravity SDK** (`google-antigravity-sdk` — `antigravity-plugins-official/plugin/google-antigravity-sdk`): In-process `google-antigravity` Python SDK skill (`Agent`, `LocalAgentConfig`, `skills_paths`, `policy`, `BudgetConfig`).
+   2. **Elephant-Goldfish Model** (`egm` — `antigravity-plugins-official/plugin/egm`): Specialist **EGM** architectural and implementation review subagents (`egm-design`, `egm-zoom-out`, `egm-codebase-details`, `egm-implementation-readiness`).
+   3. **Chrome DevTools** (`chrome-devtools-plugin` — `antigravity-plugins-official/plugin/chrome-devtools-plugin`): Browser automation, accessibility, LCP, and Chrome DevTools MCP inspection for our Slidev deck and web cast players.
+   4. **Google Developer Knowledge** (`google-developer-knowledge` — `antigravity-plugins-official/plugin/google-developer-knowledge`): Developer Knowledge MCP server (`search_documents`, `get_documents`, `answer_query`) and `retrieving-developer-knowledge` skill for grounded official Google documentation.
+   5. **Modern Web Guidance** (`modern-web-guidance-plugin` — `antigravity-plugins-official/plugin/modern-web-guidance-plugin`): Up-to-date modern HTML/CSS, client-side JS, and web component best practices (`modern-web-guidance`).
+
+   > [!TIP]
+   > **Hosting in the Cloud (`google-cloud-developer`)**: When you want to host and deploy applications in Google Cloud, also install **Google Cloud Developer** (`google-cloud-developer` — `antigravity-plugins-official/plugin/google-cloud-developer`). It bundles `finding-google-skills`, safety-critical `gcloud` CLI validation guardrails, IAM/ADC authentication recipes (`google-cloud-recipe-auth`), and project onboarding (`google-cloud-recipe-onboarding`), and includes the Google Developer Knowledge MCP server.
+
+8. Close the `/plugin` interactive menu and wait for `agy` to finish reloading plugins (skipping any transient `Loading...` frame) and settle back at the idle `>` prompt (`? for shortcuts`).
+9. Exit `agy` (`Ctrl+D` twice), then exit `zsh` (`exit` or `Ctrl+D`).
 
 > [!NOTE]
 > `trim-cast.py --info` will spot `agy`'s `press ctrl+d again to exit` / `Resume with ...` sequence right before the outer `zsh` exit. Trim cleanly past the settled `agy` response (or after the exit back to `zsh` if you prefer `agy`'s completion screen as the final held frame).
@@ -189,8 +214,8 @@ asciinema rec -i 2.0 --window-size 120x36 --overwrite \
 | `m2` | `After: Install find-skills` | `npx skills add vercel-labs/skills@find-skills -g -y` |
 | `m3` | `Before: Launch agy` | `find-skills` installation finished; `zsh` prompt ready |
 | `m4` | `After: Launch agy` | `agy` |
-| `m5` | `Before: Verify Way 1 plugins prompt` | `agy` banner loaded and `>` prompt box empty |
-| `m6` | `After: Verify Way 1 plugins prompt` | `/plugin Please check that the Google Antigravity SDK plugin (google-antigravity-sdk) and the EGM review subagents are enabled for this workspace, and show me what skills and specialist agents they provide.` |
+| `m5` | `Before: Invoke /plugin` | `agy` banner loaded and `>` prompt box empty |
+| `m6` | `After: Invoke /plugin` | `/plugin` entered in prompt box before interactive plugin manager opens |
 
 #### Post-Recording Verification Checklist
 
