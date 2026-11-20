@@ -10,7 +10,10 @@ class: text-center
   <p class="text-2xl text-gray-300 font-light max-w-2xl">
     Ecosystem, Community, and Bespoke Agent Skills in Action
   </p>
-  <div class="mt-10 text-gray-400 text-base">
+  <div class="mt-4 text-sm font-mono text-cyan-300">
+    90-Minute Self-Paced Codelab &amp; Walkthrough
+  </div>
+  <div class="mt-8 text-gray-400 text-base">
     <span class="font-semibold text-gray-200">Brett Morgan</span> &middot; Developer Relations Engineer, Google Cloud
   </div>
   <div class="mt-10 text-xs text-gray-500">
@@ -19,7 +22,7 @@ class: text-center
 </div>
 
 <!--
-Welcome to DevFest Auckland 2026! Today we're going to explore three ways of working with AI Agent Skills—from official ecosystem plugins, to community workflow skills, to bespoke skills authored right inside your project—by building Brain Explorer, a Python and Textual TUI powered by the Google Antigravity SDK.
+Welcome! Today we are running a 90-minute self-paced codelab exploring three ways of working with AI Agent Skills—from official ecosystem plugins, to community workflow skills, to bespoke skills authored right inside your project—by building and inspecting Brain Explorer, a Python and Textual TUI powered by the Google Antigravity SDK.
 -->
 
 ---
@@ -99,43 +102,81 @@ layout: default
 
 <ol class="space-y-3.5 text-sm text-gray-200 list-decimal pl-6 mt-4 leading-relaxed">
   <li>
-    <strong class="text-white">What Are Agent Skills?</strong>
+    <strong class="text-white">Lab 0 &middot; Setup &amp; Agent Skills Primer (~10 min)</strong>
     <ul class="list-disc pl-5 mt-1 space-y-1 text-gray-300">
       <li>Monolithic system prompts &rarr; 3-tier progressive disclosure</li>
-      <li>Using Antigravity&rsquo;s built-in skills so we don&rsquo;t write skills by hand</li>
+      <li>Clone <code>codelab/start</code> and ask Antigravity directly how skills work</li>
     </ul>
   </li>
   <li>
-    <strong class="text-white">Way 1 &middot; Ecosystem &amp; Plugin Skills</strong>
+    <strong class="text-white">Lab 1 &middot; Way 1 Ecosystem &amp; Plugin Skills (~10 min)</strong>
     <ul class="list-disc pl-5 mt-1 space-y-1 text-gray-300">
-      <li>Official plugins pairing <code>google-antigravity-sdk</code> with <strong>EGM</strong> specialist review subagents</li>
+      <li>Enable <code>google-antigravity-sdk</code> and <strong>EGM</strong> specialist review subagents via <code>/plugin</code></li>
     </ul>
   </li>
   <li>
-    <strong class="text-white">Way 2 &middot; Community Workflow Skills</strong>
+    <strong class="text-white">Labs 2–3 &middot; Way 2 Community Workflow Skills &amp; EGM Build (~40 min)</strong>
     <ul class="list-disc pl-5 mt-1 space-y-1 text-gray-300">
-      <li>Discovering and evaluating skills with <code>find-skills</code> and <code>wshobson/agents</code></li>
-      <li>Spotting the Textual TUI skill gap and iterating with <strong>EGM</strong></li>
+      <li>Search and lock <code>wshobson/agents</code> with <code>find-skills</code>, spot the Textual TUI gap, and run two-pass <strong>EGM</strong> reviews</li>
     </ul>
   </li>
   <li>
-    <strong class="text-white">Way 3 &middot; Bespoke In-Project Skills &amp; Brain Explorer</strong>
+    <strong class="text-white">Labs 4–5 &middot; Way 3 Bespoke Skills &amp; Brain Explorer Payoff (~30 min)</strong>
     <ul class="list-disc pl-5 mt-1 space-y-1 text-gray-300">
-      <li>Turning exploratory friction into a custom skill with <code>/agy-customizations</code></li>
-      <li>Inspecting the real <code>~/.gemini</code> Session Trajectories and Skill Activations in Brain Explorer</li>
+      <li>Synthesise exploratory friction with <code>/agy-customizations</code> and inspect your own <code>~/.gemini</code> Session Trajectories</li>
     </ul>
   </li>
 </ol>
 
 <!--
-Here's our itinerary for today.
+Here's our itinerary across the next 90 minutes. Work through the self-paced codelab at your own speed while I walk through the ideas on screen:
 
-First, we'll do a quick primer on Agent Skills—why stuffing every manual into a monolithic system prompt fails, how 3-tier progressive disclosure keeps context clean, and how we use Antigravity's built-in customisation skill so the agent actually writes skills for us.
+First, in Lab 0, we clone the clean starter branch and ask Antigravity why stuffing every manual into a monolithic system prompt fails, and how 3-tier progressive disclosure keeps context clean.
 
-Then we'll walk through Skills Three Ways while building Brain Explorer:
-- Way 1 is Ecosystem and Plugin Skills, where we enable official plugins that pair the Google Antigravity SDK with EGM specialist review subagents.
-- Way 2 is Community Workflow Skills, where we use `find-skills` to evaluate community skills like `wshobson/agents`, notice where the ecosystem still has gaps around Textual TUIs, and let EGM push and pull on our architecture.
-- Way 3 is Bespoke In-Project Skills, where we turn the real friction we hit during exploration into a custom skill with `/agy-customizations`—and close the loop by opening Brain Explorer to inspect the actual `~/.gemini` Session Trajectories and Skill Activations that built it.
+Then we build Brain Explorer across Skills Three Ways:
+- In Lab 1 (Way 1), we enable official plugins pairing the Google Antigravity SDK with EGM specialist review subagents.
+- In Labs 2 and 3 (Way 2), we use `find-skills` to evaluate community Python skills, spot the coverage gap around Textual TUIs, and let EGM push and pull on our architecture.
+- Finally, in Labs 4 and 5 (Way 3), we turn the friction we hit into a custom skill with `/agy-customizations`—and close the loop by opening Brain Explorer against your own `~/.gemini` Session Trajectories.
+-->
+
+---
+layout: default
+---
+
+<!-- S1-01e -->
+<div class="flex items-center gap-3 mb-4">
+  <h2 class="text-2xl font-bold m-0">Open the Codelab &mdash; Follow Along at Your Own Pace</h2>
+</div>
+
+<div class="grid grid-cols-12 gap-6 mt-5 items-center">
+  <div class="col-span-5 flex flex-col items-center justify-center p-5 rounded-xl bg-[#1a1b22] border border-gray-800">
+    <QrBadge size="lg" caption="Scan to open the 90-minute codelab" />
+  </div>
+  <div class="col-span-7 space-y-4">
+    <div class="p-4 rounded-xl bg-gray-900/80 border border-gray-800 space-y-2">
+      <div class="text-xs font-mono uppercase tracking-wider text-cyan-300">Prerequisites</div>
+      <div class="flex flex-wrap gap-2 text-xs font-mono">
+        <span class="px-2.5 py-1 rounded bg-gray-800 border border-gray-700 text-gray-200">agy (CLI + auth)</span>
+        <span class="px-2.5 py-1 rounded bg-gray-800 border border-gray-700 text-gray-200">uv</span>
+        <span class="px-2.5 py-1 rounded bg-gray-800 border border-gray-700 text-gray-200">Python 3.12+</span>
+        <span class="px-2.5 py-1 rounded bg-gray-800 border border-gray-700 text-gray-200">Node 18+ (npx)</span>
+        <span class="px-2.5 py-1 rounded bg-gray-800 border border-gray-700 text-gray-200">git</span>
+      </div>
+      <p class="text-xs text-gray-400 m-0 pt-1">
+        Every prompt, recovery checkpoint branch, and troubleshooting foldout lives in the web codelab so you never have to squint at the projector.
+      </p>
+    </div>
+    <PromptCard
+      kind="command"
+      way="0"
+      label="Clone &amp; Start Lab"
+      text="git clone https://github.com/domesticmouse/skills-three-ways-akl.git && cd skills-three-ways-akl && git checkout -b my-lab codelab/start"
+    />
+  </div>
+</div>
+
+<!--
+Scan this QR code or open `domesticmouse.github.io/skills-three-ways-akl/` on your laptop right now. Everything you need—one-click copy buttons for every prompt, collapsible troubleshooting tips, and git checkpoint branches in case you ever want to skip ahead—lives in that codelab. Go ahead and get `codelab/start` cloned while we frame the skills primer.
 -->
 
 ---
@@ -210,22 +251,45 @@ layout: default
 </div>
 
 <!--
-Let's ask Antigravity directly in the terminal: "What are agent skills?"
+Jump into Lab 0 in your terminal and ask Antigravity directly: "What are agent skills?"
 -->
 
 ---
-layout: cast-full
-title: "Asking Antigravity: What Are Agent Skills?"
-cast: /casts/what-are-agent-skills.cast
-autoPlay: false
-speed: 2.0
-idleTimeLimit: 1.0
-fit: both
+layout: lab-step
+step: "Lab 0"
+way: 0
+duration: "~10 min"
+title: "Setup &amp; Warm-Up: Ask Antigravity"
+codelabAnchor: "#step-0"
+checkpoint: "codelab/start"
 ---
 
 <!-- S1-05 -->
+
+<PromptCard
+  kind="command"
+  way="0"
+  label="Clone starter branch &amp; launch agy"
+  text="git clone https://github.com/domesticmouse/skills-three-ways-akl.git && cd skills-three-ways-akl && git checkout -b my-lab codelab/start && agy"
+/>
+
+<PromptCard
+  kind="prompt"
+  way="0"
+  label="Warm-up prompt inside agy"
+  text="What are agent skills?"
+/>
+
+::verify::
+
+<ul class="list-disc pl-4 space-y-1.5">
+  <li><code>agy</code>, <code>uv</code>, <code>python3 &gt;= 3.12</code>, <code>node</code>, and <code>git</code> respond cleanly.</li>
+  <li>You are on branch <code>my-lab</code> off <code>codelab/start</code> (empty <code>src/</code>).</li>
+  <li><code>agy</code> inspects its customisation skill and explains <code>SKILL.md</code> plus 3-tier progressive disclosure.</li>
+</ul>
+
 <!--
-Here's AGY answering in Ghostty. Notice how it immediately checks its customisation skill and breaks down the directory structure, frontmatter triggers, and progressive disclosure model.
+Take a few minutes to work through Lab 0 in the codelab. Clone the starter branch `codelab/start` so your workspace has zero finished `src/` code for the agent to peek at, launch `agy`, and ask it "What are agent skills?". Notice how it immediately consults its built-in customisation skill and lays out the directory anatomy and 3-tier loading model.
 -->
 
 
@@ -271,7 +335,7 @@ layout: default
 </div>
 
 <!--
-As Antigravity showed in the recording, a skill isn't just a loose markdown file—it is a self-contained directory package. SKILL.md acts as the primary runbook, while optional directories hold executable scripts, in-depth documentation, and reusable templates.
+As Antigravity just explained in your terminal, a skill isn't just a loose markdown file—it is a self-contained directory package. SKILL.md acts as the primary runbook, while optional directories hold executable scripts, in-depth documentation, and reusable templates.
 -->
 
 ---

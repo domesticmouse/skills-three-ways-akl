@@ -11,4 +11,6 @@ slides/node_modules/
 slides/dist/
 slides/.slidev.pid
 slides/.slidev.log
+codelab/dist/
+_site/
 

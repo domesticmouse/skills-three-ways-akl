@@ -10,6 +10,7 @@ info: |
 drawings:
   persist: false
 transition: slide-left
+routerMode: hash
 title: Skills Three Ways
 mdc: true
 hide: true

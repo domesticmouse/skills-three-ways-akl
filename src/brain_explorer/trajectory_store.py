@@ -103,19 +103,58 @@ def _format_duration(start_dt: datetime | None, end_dt: datetime | None) -> str 
     return f"{hours}h {rem_m:02d}m"
 
 
-def _classify_skill_tier(skill_name: str, skill_path: str | None) -> SkillTier:
+def _load_locked_community_skills(workspace_root: Path) -> frozenset[str] | None:
+    """Return skill names recorded in ``workspace_root/skills-lock.json``, if valid."""
+    lock_path = workspace_root / "skills-lock.json"
+    if not lock_path.is_file():
+        return None
+    try:
+        data = json.loads(lock_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    if not isinstance(data, dict):
+        return None
+    skills = data.get("skills")
+    if not isinstance(skills, dict):
+        return None
+    return frozenset(str(k) for k in skills)
+
+
+def _infer_repo_root_from_skill_path(norm_path: str) -> Path | None:
+    """Infer the repository root from a path containing ``/.agents/skills/``."""
+    if "/.agents/skills/" not in norm_path:
+        return None
+    prefix = norm_path.split("/.agents/skills/", 1)[0]
+    return Path(prefix or "/")
+
+
+def _classify_skill_tier(
+    skill_name: str,
+    skill_path: str | None,
+    *,
+    workspace_root: Path | None = None,
+) -> SkillTier:
     """Classify a detected Skill Activation under Skills Three Ways."""
     clean_name = skill_name.strip().lstrip("/")
-    if skill_path:
-        norm = skill_path.replace("\\", "/")
-        if "/.gemini/config/plugins/" in norm or "/.gemini/antigravity/builtin/" in norm:
-            return "way_1_plugin"
-        if "/.agents/skills/" in norm or norm.startswith(".agents/skills/"):
-            return "way_3_bespoke" if clean_name in BESPOKE_PROJECT_SKILLS else "way_2_community"
+    norm = skill_path.replace("\\", "/") if skill_path else ""
+    if norm and ("/.gemini/config/plugins/" in norm or "/.gemini/antigravity/builtin/" in norm):
+        return "way_1_plugin"
     if clean_name in BESPOKE_PROJECT_SKILLS:
         return "way_3_bespoke"
-    if clean_name and (Path.cwd() / ".agents" / "skills" / clean_name / "SKILL.md").is_file():
+    if norm and ("/.agents/skills/" in norm or norm.startswith(".agents/skills/")):
+        repo_root = _infer_repo_root_from_skill_path(norm) or workspace_root
+        if repo_root is not None:
+            locked = _load_locked_community_skills(repo_root)
+            if locked is not None:
+                return "way_2_community" if clean_name in locked else "way_3_bespoke"
         return "way_2_community"
+    if not skill_path and clean_name:
+        base_root = workspace_root or Path.cwd()
+        if (base_root / ".agents" / "skills" / clean_name / "SKILL.md").is_file():
+            locked = _load_locked_community_skills(base_root)
+            if locked is not None and clean_name not in locked:
+                return "way_3_bespoke"
+            return "way_2_community"
     return "unknown"
 
 
@@ -206,7 +245,11 @@ def _safe_step_index(step: dict[str, Any], fallback_idx: int) -> int:
         return fallback_idx
 
 
-def detect_skill_activations(steps: list[dict[str, Any]]) -> list[SkillActivationItem]:
+def detect_skill_activations(
+    steps: list[dict[str, Any]],
+    *,
+    workspace_root: Path | None = None,
+) -> list[SkillActivationItem]:
     """Deterministically detect Skill Activations across a Session Trajectory.
 
     Evidenced either by an explicit ``<SKILL>`` slash-command payload outside
@@ -238,7 +281,7 @@ def detect_skill_activations(steps: list[dict[str, Any]]) -> list[SkillActivatio
                                 step_index=step_index,
                                 evidence=path or f"/{name} slash command",
                                 skill_path=path,
-                                tier=_classify_skill_tier(name, path),
+                                tier=_classify_skill_tier(name, path, workspace_root=workspace_root),
                             )
                         )
                         matched_in_step = True
@@ -255,7 +298,7 @@ def detect_skill_activations(steps: list[dict[str, Any]]) -> list[SkillActivatio
                                 step_index=step_index,
                                 evidence=f"/{name} slash command",
                                 skill_path=None,
-                                tier=_classify_skill_tier(name, None),
+                                tier=_classify_skill_tier(name, None, workspace_root=workspace_root),
                             )
                         )
                         matched_in_step = True
@@ -273,7 +316,7 @@ def detect_skill_activations(steps: list[dict[str, Any]]) -> list[SkillActivatio
                                     step_index=step_index,
                                     evidence=f"/{name} slash command",
                                     skill_path=None,
-                                    tier=_classify_skill_tier(name, None),
+                                    tier=_classify_skill_tier(name, None, workspace_root=workspace_root),
                                 )
                             )
 
@@ -303,7 +346,11 @@ def detect_skill_activations(steps: list[dict[str, Any]]) -> list[SkillActivatio
                                 step_index=step_index,
                                 evidence=raw_path,
                                 skill_path=raw_path,
-                                tier=_classify_skill_tier(skill_name, raw_path),
+                                tier=_classify_skill_tier(
+                                    skill_name,
+                                    raw_path,
+                                    workspace_root=workspace_root,
+                                ),
                             )
                         )
                     break
@@ -435,7 +482,10 @@ class TrajectoryStore:
 
         workspace_path = _infer_workspace_from_steps(steps)
         project_name = _project_name_from_workspace(workspace_path)
-        activations = detect_skill_activations(steps)
+        activations = detect_skill_activations(
+            steps,
+            workspace_root=Path(workspace_path) if workspace_path else None,
+        )
 
         summary = SessionTrajectorySummary(
             session_id=session_dir.name,

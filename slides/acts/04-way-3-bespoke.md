@@ -37,13 +37,13 @@ layout: default
     </ul>
   </li>
   <li>
-    <strong class="text-white"><code>slidev-deck</code> &amp; <code>bjm-voice</code> (Presentation &amp; Editorial Hygiene)</strong>
+    <strong class="text-white"><code>slidev-deck</code> &amp; <code>bjm-voice</code> (Presentation &amp; Editorial Hygiene on <code>main</code>)</strong>
     <ul class="list-disc pl-5 mt-1 space-y-1 text-gray-300">
-      <li>Encodes this Slidev deck's modular act architecture, <code>AsciinemaPlayer.vue</code> chapter markers, and Australian English storytelling voice (<code>realise</code>, <code>colour</code>, <code>labelled</code>, <code>organisation</code>)</li>
+      <li>Pre-seeded <code>agy-brain-explorer</code> came along in <code>codelab/start</code>; meanwhile <code>slidev-deck</code> and <code>bjm-voice</code> shaped these slides and Australian English voice (<code>realise</code>, <code>colour</code>, <code>labelled</code>, <code>organisation</code>)</li>
     </ul>
   </li>
   <li>
-    <strong class="text-white">The Missing Piece &mdash; <code>a2ui-textual</code></strong>
+    <strong class="text-white">The Missing Piece &mdash; Our A2UI + Textual Skill</strong>
     <ul class="list-disc pl-5 mt-1 space-y-1 text-gray-300">
       <li>Every time a fresh session touches our Textual + A2UI v1.0 renderer without a skill, it risks repeating the ten Cycle 2 traps</li>
     </ul>
@@ -51,50 +51,45 @@ layout: default
 </ol>
 
 <!--
-Before we extract our new skill, it's worth noting that three bespoke project skills are already quietly doing heavy lifting in this repository. First is `agy-brain-explorer`, which documents the on-disk schema of `~/.gemini` brain directories and is mounted straight into Brain Explorer's in-process SDK agent via `skills_paths`. Second are `slidev-deck` and `bjm-voice`, which built the very slides and chapter-marked `asciinema` players you're looking at right now—and keep my spelling firmly in Australian English. What we're still missing is a bespoke skill for our A2UI v1.0 Textual renderer so future sessions never stumble into those ten Cycle 2 traps again.
+Before we extract our new skill in Lab 4, notice that bespoke project skills are already quietly doing heavy lifting here. `agy-brain-explorer` came along in `codelab/start` so your agent—and Brain Explorer's embedded SDK agent—knew how `~/.gemini` brain directories work on disk. Meanwhile on `main`, `slidev-deck` and `bjm-voice` built the slides you are looking at right now and kept my spelling firmly in Australian English. What we are still missing in your lab workspace is a bespoke skill for our A2UI v1.0 Textual renderer so fresh sessions never stumble into those ten Cycle 2 traps again.
 -->
 
 ---
-layout: cast-full
-title: "Turning Exploratory Friction into a2ui-textual with /agy-customizations"
-cast: /casts/way-3-agy-customizations.cast
-autoPlay: false
-speed: 2.0
-idleTimeLimit: 2.0
-fit: both
+layout: lab-step
+step: "Lab 4"
+way: 3
+duration: "~15 min"
+title: "Synthesise &amp; Cold-Verify Your Bespoke Skill"
+codelabAnchor: "#step-4"
+checkpoint: "codelab/checkpoint-4-bespoke-skill"
 ---
 
 <!-- S4-03 -->
-<div class="w-full max-w-4xl mx-auto p-5 rounded-xl bg-[#1a1b26] border border-emerald-500/30 shadow-2xl space-y-4">
-  <div class="flex items-start justify-between gap-4 pb-3 border-b border-gray-800">
-    <div>
-      <div class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Trajectory 4 &middot; Way 3 Synthesis &amp; Cold Verification</div>
-      <h3 class="text-lg font-bold text-white mt-0.5 m-0">Turning Exploratory Friction into <code>a2ui-textual</code> with <code>/agy-customizations</code></h3>
-      <div class="text-xs font-mono text-gray-400 mt-1">Target cast: <code>/casts/way-3-agy-customizations.cast</code></div>
-    </div>
-    <span class="shrink-0 px-2.5 py-1 rounded-full text-xs font-mono border border-amber-500/40 bg-amber-500/10 text-amber-300">
-      CAST Placeholder &middot; 4 Stop Points (m1&ndash;m4)
-    </span>
-  </div>
-  <div class="space-y-3 text-xs font-mono">
-    <div class="p-3.5 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1.5">
-      <div class="text-emerald-300 font-semibold">m1 &rarr; m2 &middot; Before / After: /agy-customizations synthesis prompt</div>
-      <div class="text-gray-400">m1: <code>agy</code> prompt box empty</div>
-      <div class="text-gray-200 leading-relaxed">m2: <code>/agy-customizations Please turn what we learned building and reviewing our A2UI v1.0 Textual renderer and Antigravity SDK integration into a reusable workspace skill</code></div>
-    </div>
-    <div class="p-3.5 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1.5">
-      <div class="text-emerald-300 font-semibold">m3 &rarr; m4 &middot; Before / After: Phase 3 cold-session verification prompt</div>
-      <div class="text-gray-400">m3: <code>.agents/skills/a2ui-textual/</code> synthesised and registered; cold-session prompt box empty</div>
-      <div class="text-gray-200 leading-relaxed">m4: <code>Build an A2UI v1.0 surface for our Python Textual TUI that compares Skill Activations across Way 1 plugins, Way 2 community skills, and Way 3 bespoke skills with interactive tabs and a tier filter.</code></div>
-    </div>
-  </div>
-  <div class="text-[11px] font-mono text-gray-500 pt-1">
-    Awaiting <code>recordings/final/way-3-agy-customizations.cast</code> &mdash; switches automatically to <code>asciinema-player</code> once synced.
-  </div>
-</div>
+
+<PromptCard
+  kind="prompt"
+  way="3"
+  label="Phase 2 · Synthesise bespoke skill with /agy-customizations"
+  text="/agy-customizations Please turn what we learned building and reviewing our A2UI v1.0 Textual renderer and Antigravity SDK integration into a reusable workspace skill"
+/>
+
+<PromptCard
+  kind="prompt"
+  way="3"
+  label="Phase 3 · Exit agy (Ctrl+D x2), reopen cold, &amp; test routing"
+  text="Build an A2UI v1.0 surface for our Python Textual TUI that compares Skill Activations across Way 1 plugins, Way 2 community skills, and Way 3 bespoke skills with interactive tabs and a tier filter."
+/>
+
+::verify::
+
+<ul class="list-disc pl-4 space-y-1.5">
+  <li><code>.agents/skills/&lt;your-skill&gt;/SKILL.md</code> and <code>references/</code> exist on disk.</li>
+  <li><strong>Exit <code>agy</code> completely</strong> (<code>Ctrl+D</code> twice) before Phase 3 so context is empty.</li>
+  <li>Cold session auto-triggers your skill without naming it and passes <code>STRICT_VALIDATION</code>.</li>
+</ul>
 
 <!--
-Remember our heel turn at the end of Act 1—"I don't write skills by hand; Antigravity writes them for me"? Here is that promise in action in `way-3-agy-customizations.cast`. At our first prompt stop point, right after solving the Cycle 2 bugs, we run `/agy-customizations` and ask Antigravity to turn what we learned building and reviewing our A2UI v1.0 Textual renderer and Antigravity SDK integration into a reusable workspace skill. It distils the core workflow into `.agents/skills/a2ui-textual/SKILL.md` and splits the ten deep integration traps into `references/a2ui-v1-textual-gotchas.md`. Then, at our second prompt stop point, we open a brand-new cold session and ask it to build an interactive A2UI v1.0 surface comparing Skill Activations across Way 1, Way 2, and Way 3. Watch the cold agent trigger Tier 1 discovery, read Tier 2 `SKILL.md`, pull Tier 3 `a2ui-v1-textual-gotchas.md`, and pass `STRICT_VALIDATION` on the first try.
+Remember our promise in Act 1: "You don't write the skill by hand—Antigravity writes it for you"? Put that to work in Lab 4 right now. First, run `/agy-customizations` in the same session where you built or audited the renderer so it distils your runbook into `SKILL.md` and splits the edge cases into `references/`. Then—this is the crucial test—exit `agy` completely with `Ctrl+D` twice, open a cold session, and paste the Phase 3 prompt. Notice the prompt never names your new skill; watch Tier 1 semantic routing pull it in automatically!
 -->
 
 ---
@@ -133,7 +128,7 @@ crashes, frozen button action contexts, or corrupted Textual terminal output.
 </div>
 
 <!--
-Let's look at the two files `/agy-customizations` generated in `.agents/skills/a2ui-textual/`. First is `SKILL.md`, which handles Tiers 1 and 2. The YAML `description` packs the exact domain keywords—A2UI v1.0, `Textual`, `a2ui-core`, `MessageProcessor`, `BasicCatalog`, and `LocalAgentConfig`—into around 60 tokens so Tier 1 routing fires reliably in a cold session. The Markdown body stays under 100 lines, giving the agent the golden-path runbook and an explicit pointer to `references/a2ui-v1-textual-gotchas.md`.
+Compare the skill you just synthesised with the two files `/agy-customizations` generated in our reference run under `.agents/skills/a2ui-textual/`. First is `SKILL.md`, which handles Tiers 1 and 2. The YAML `description` packs the exact domain keywords—A2UI v1.0, `Textual`, `a2ui-core`, `MessageProcessor`, `BasicCatalog`, and `LocalAgentConfig`—into around 60 tokens so Tier 1 routing fires reliably in a cold session. The Markdown body stays under 100 lines, giving the agent the golden-path runbook and an explicit pointer to `references/a2ui-v1-textual-gotchas.md`.
 -->
 
 ---
@@ -173,57 +168,47 @@ And here is Tier 3: `references/a2ui-v1-textual-gotchas.md`. Instead of bloating
 -->
 
 ---
-layout: cast-full
-title: "Closing the Loop: Inspecting Our Build Trajectories in Brain Explorer"
-cast: /casts/way-3-brain-explorer-payoff.cast
-autoPlay: false
-speed: 2.0
-idleTimeLimit: 2.0
-fit: both
+layout: lab-step
+step: "Lab 5"
+way: "mashup"
+duration: "~15 min"
+title: "Brain Explorer Payoff: Inspect Your Own Sessions"
+codelabAnchor: "#step-5"
+checkpoint: "codelab/checkpoint-4-bespoke-skill"
 ---
 
 <!-- S4-06 -->
-<div class="w-full max-w-4xl mx-auto p-5 rounded-xl bg-[#1a1b26] border border-emerald-500/30 shadow-2xl space-y-3.5">
-  <div class="flex items-start justify-between gap-4 pb-3 border-b border-gray-800">
-    <div>
-      <div class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Brain Explorer CLI &amp; TUI Payoff</div>
-      <h3 class="text-lg font-bold text-white mt-0.5 m-0">Closing the Loop: Inspecting Our Build Trajectories in Brain Explorer</h3>
-      <div class="text-xs font-mono text-gray-400 mt-1">Target cast: <code>/casts/way-3-brain-explorer-payoff.cast</code></div>
-    </div>
-    <span class="shrink-0 px-2.5 py-1 rounded-full text-xs font-mono border border-amber-500/40 bg-amber-500/10 text-amber-300">
-      CAST Placeholder &middot; 6 Stop Points (m1&ndash;m6)
-    </span>
-  </div>
-  <div class="space-y-2 text-xs font-mono">
-    <div class="p-3 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1">
-      <div class="text-emerald-300 font-semibold">m1 &rarr; m2 &middot; Before / After: CLI sessions overview command</div>
-      <div class="text-gray-400">m1: Clean <code>zsh</code> prompt ready</div>
-      <div class="text-gray-200">m2: <code>uv run brain-explorer sessions --project skills-three-ways-akl</code></div>
-    </div>
-    <div class="p-3 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1">
-      <div class="text-emerald-300 font-semibold">m3 &rarr; m4 &middot; Before / After: Launch Brain Explorer TUI command</div>
-      <div class="text-gray-400">m3: CLI sessions table rendered; <code>zsh</code> prompt ready</div>
-      <div class="text-gray-200">m4: <code>uv run brain-explorer</code></div>
-    </div>
-    <div class="p-3 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1">
-      <div class="text-emerald-300 font-semibold">m5 &rarr; m6 &middot; Before / After: In-TUI A2UI v1.0 prompt</div>
-      <div class="text-gray-400">m5: <strong>Brain Explorer</strong> TUI open (<code>Ctrl+B</code> sidebar browsed), <code>/</code> prompt input focused and empty</div>
-      <div class="text-gray-200 leading-relaxed">m6: <code>Compare how Way 1 plugin skills, Way 2 community skills, and Way 3 bespoke skills were activated across our Brain Explorer build sessions, and group them into an interactive A2UI v1.0 tabbed breakdown.</code></div>
-    </div>
-  </div>
-  <div class="text-[11px] font-mono text-gray-500 pt-1">
-    Awaiting <code>recordings/final/way-3-brain-explorer-payoff.cast</code> &mdash; switches automatically to <code>asciinema-player</code> once synced.
-  </div>
-</div>
+
+<PromptCard
+  kind="command"
+  way="mashup"
+  label="1. Inspect your Session Trajectories &amp; launch Brain Explorer TUI"
+  text='uv run brain-explorer sessions --project "$(basename "$PWD")" --limit 20 && uv run brain-explorer'
+/>
+
+<PromptCard
+  kind="prompt"
+  way="mashup"
+  label="2. Press / inside the TUI for an A2UI v1.0 comparison"
+  text="Compare how Way 1 plugin skills, Way 2 community skills, and Way 3 bespoke skills were activated across our Brain Explorer build sessions, and group them into an interactive A2UI v1.0 tabbed breakdown."
+/>
+
+::verify::
+
+<ul class="list-disc pl-4 space-y-1.5">
+  <li>CLI &amp; <code>Ctrl+B</code> sidebar show your <strong>own</strong> Labs 0–4 trajectories and skill tiers.</li>
+  <li>Pressing <code>/</code> renders interactive A2UI v1.0 tabs cleanly without stderr corruption.</li>
+  <li>Press <code>Ctrl+I</code> to inspect the validated <code>"version": "1.0"</code> envelope &amp; <code>DataModel</code>.</li>
+</ul>
 
 <!--
-Now let's bring the whole story together in `way-3-brain-explorer-payoff.cast`. First, we run `uv run brain-explorer sessions --project skills-three-ways-akl` to see a fast CLI summary table of the four canonical Session Trajectories we recorded while building the app across Ways 1, 2, and 3. Next, we launch the interactive Textual TUI with `uv run brain-explorer`. In the left sidebar, the deterministic `TrajectoryStore` lets us step through each trajectory and its Skill Activations instantly. Then, at our final prompt stop point, we press `/` inside the TUI and ask the embedded Antigravity SDK agent to compare how Way 1 plugin skills, Way 2 community skills, and Way 3 bespoke skills were activated across our build sessions and group them into an interactive A2UI v1.0 tabbed breakdown. Watch the live A2UI v1.0 tabs render inside Textual—and when we press `Ctrl+I`, the protocol inspector reveals the validated `"version": "1.0"` envelope and `DataModel` driving the screen.
+Here is the payoff in Lab 5: exit `agy` completely (`Ctrl+D` twice) and inspect the real `~/.gemini` Session Trajectories you created over the last 75 minutes. First, `uv run brain-explorer sessions` prints a fast deterministic table of your build sessions—zero LLM calls needed. Next, launch the TUI with `uv run brain-explorer`, browse the `Ctrl+B` sidebar, press `/` to focus the prompt bar, and ask the embedded Antigravity SDK agent to compare your Way 1, Way 2, and Way 3 Skill Activations inside interactive A2UI v1.0 tabs. Press `Ctrl+I` to inspect the validated JSON envelope underneath.
 -->
 
 ---
 layout: skill-breakdown
 way: mashup
-title: "What Brain Explorer Revealed: 4 Build Trajectories Across Three Ways"
+title: "What Brain Explorer Reveals: Three Ways Working in Concert"
 ---
 
 <!-- S4-07 -->
@@ -233,16 +218,16 @@ title: "What Brain Explorer Revealed: 4 Build Trajectories Across Three Ways"
 Trajectory 1 · Way 1 Plugin Discovery        -> plugin, google-antigravity-sdk              [way_1_plugin]
 Trajectory 2 · Way 2 Skill Evaluation        -> find-skills                                 [way_2_community]
 Trajectory 3 · Two-Pass EGM Build Cycle      -> google-antigravity-sdk + 4x EGM subagents   [way_1_plugin]
-   (+ 8 Cycle 1 & Cycle 2 EGM trajectories)     uv-package-manager + 7 Python skills        [way_2_community]
+   (+ Cycle 1 & Cycle 2 EGM trajectories)       uv-package-manager + Python skills          [way_2_community]
                                                 agy-brain-explorer                          [way_3_bespoke]
 Trajectory 4 · Way 3 Synthesis & Cold Test   -> agy-customizations                          [way_1_plugin]
                                                 writing-for-agents                          [way_2_community]
-                                                a2ui-textual (SKILL.md + Tier 3 gotchas)    [way_3_bespoke]
+                                                your bespoke skill (SKILL.md + references/) [way_3_bespoke]
 ```
 
   <div class="grid grid-cols-2 gap-4 text-xs pt-2">
     <div class="p-3 rounded-lg bg-gray-900/80 border border-gray-800">
-      <span class="text-purple-300 font-semibold">Dual Activation Evidence:</span> <code>TrajectoryStore</code> detects both explicit <code>&lt;SKILL&gt;</code> slash-command invocations and on-demand <code>SKILL.md</code> / <code>references/</code> file reads in <code>transcript.jsonl</code>.
+      <span class="text-purple-300 font-semibold">Dynamic Tier Classification:</span> <code>TrajectoryStore</code> detects <code>&lt;SKILL&gt;</code> slash commands and <code>SKILL.md</code> reads, classifying workspace skills absent from <code>skills-lock.json</code> as <code>way_3_bespoke</code>.
     </div>
     <div class="p-3 rounded-lg bg-gray-900/80 border border-gray-800">
       <span class="text-purple-300 font-semibold">The Three Ways in Concert:</span> Every build stage combined platform plugins, community conventions, and repo-specific bespoke skills.
@@ -251,7 +236,7 @@ Trajectory 4 · Way 3 Synthesis & Cold Test   -> agy-customizations             
 </div>
 
 <!--
-Looking at the breakdown inside Brain Explorer makes something really clear: the Three Ways aren't isolated silos you graduate out of—they layer together in the same workflow. Look at Trajectory 3 and Trajectory 4 on screen: in a single build session, the agent combines Way 1 platform plugins (`google-antigravity-sdk`, `agy-customizations`, and the EGM review subagents), Way 2 community workflow skills (`wshobson/agents` and `writing-for-agents`), and Way 3 bespoke project skills (`agy-brain-explorer` and our newly minted `a2ui-textual` skill). And because `TrajectoryStore` inspects both `<SKILL>` slash commands and `SKILL.md` file reads inside `~/.gemini`, you can see the exact moment Tier 2 and Tier 3 progressive disclosure kicked in.
+Looking at your own breakdown inside Brain Explorer makes something crystal clear: the Three Ways aren't isolated silos you graduate out of—they layer together in the same workflow. Across Labs 3 and 4, a single session combines Way 1 platform plugins (`google-antigravity-sdk`, `agy-customizations`, and EGM subagents), Way 2 community workflow skills (`wshobson/agents` and `writing-for-agents`), and Way 3 bespoke project skills (`agy-brain-explorer` plus whatever bespoke skill `/agy-customizations` generated for you). And because `TrajectoryStore` checks `skills-lock.json` dynamically, your newly minted skill shows up right under `way_3_bespoke`.
 -->
 
 ---
@@ -293,49 +278,54 @@ layout: default
 ---
 
 <!-- S4-09 -->
-<div class="flex items-center gap-3 mb-6">
+<div class="flex items-center gap-3 mb-4">
   <h2 class="text-2xl font-bold m-0">Links &amp; Resources</h2>
 </div>
 
-<div class="space-y-4 mt-6">
-  <div class="p-4 rounded-xl bg-gray-900 border border-gray-800">
-    <div class="flex items-center justify-between">
-      <div class="text-xs font-mono text-cyan-400 uppercase tracking-wide">Presentation Deck, Recordings &amp; Brain Explorer Source</div>
-      <span class="text-xs font-mono text-gray-500">github.com</span>
+<div class="grid grid-cols-12 gap-5 mt-4 items-center">
+  <div class="col-span-8 space-y-3">
+    <div class="p-4 rounded-xl bg-gray-900 border border-gray-800">
+      <div class="flex items-center justify-between">
+        <div class="text-xs font-mono text-cyan-400 uppercase tracking-wide">90-Minute Codelab, Slidev Deck &amp; Brain Explorer Source</div>
+        <span class="text-xs font-mono text-gray-500">github.com</span>
+      </div>
+      <div class="text-sm font-bold font-mono mt-1">
+        <a href="https://github.com/domesticmouse/skills-three-ways-akl" target="_blank" class="text-cyan-300 hover:underline">github.com/domesticmouse/skills-three-ways-akl</a>
+      </div>
+      <p class="text-xs text-gray-400 mt-1 m-0">
+        Interactive codelab (<code>codelab/</code>), Slidev deck (<code>slides/</code>), checkpoint branches (<code>codelab/*</code>), Brain Explorer TUI, and <code>.agents/skills/a2ui-textual/</code>.
+      </p>
     </div>
-    <div class="text-base font-bold font-mono mt-1">
-      <a href="https://github.com/domesticmouse/skills-three-ways-akl" target="_blank" class="text-cyan-300 hover:underline">github.com/domesticmouse/skills-three-ways-akl</a>
+    <div class="p-4 rounded-xl bg-gray-900 border border-gray-800">
+      <div class="flex items-center justify-between">
+        <div class="text-xs font-mono text-amber-400 uppercase tracking-wide">Open Agent Skills Ecosystem &amp; CLI</div>
+        <span class="text-xs font-mono text-gray-500">skills.sh &middot; npx skills find</span>
+      </div>
+      <div class="text-sm font-bold font-mono mt-1">
+        <a href="https://skills.sh" target="_blank" class="text-amber-300 hover:underline">skills.sh</a>
+      </div>
+      <p class="text-xs text-gray-400 mt-1 m-0">
+        Discover, evaluate, and lock community workflow skills (<code>vercel-labs/skills@find-skills</code>, <code>wshobson/agents</code>).
+      </p>
     </div>
-    <p class="text-xs text-gray-400 mt-1.5 m-0">
-      Full Slidev deck (<code>slides/</code>), chapter-marked <code>asciinema</code> recordings (<code>recordings/final/</code>), Brain Explorer Textual TUI, and <code>.agents/skills/a2ui-textual/</code>.
-    </p>
+    <div class="p-4 rounded-xl bg-gray-900 border border-gray-800">
+      <div class="flex items-center justify-between">
+        <div class="text-xs font-mono text-emerald-400 uppercase tracking-wide">Google Antigravity &amp; Python SDK</div>
+        <span class="text-xs font-mono text-gray-500">antigravity.google</span>
+      </div>
+      <div class="text-sm font-bold font-mono mt-1">
+        <a href="https://antigravity.google" target="_blank" class="text-emerald-300 hover:underline">antigravity.google</a>
+      </div>
+      <p class="text-xs text-gray-400 mt-1 m-0">
+        In-process <code>google-antigravity</code> Python SDK (<code>LocalAgentConfig</code>, <code>skills_paths</code>), <code>/plugin</code>, and <code>/agy-customizations</code>.
+      </p>
+    </div>
   </div>
-  <div class="p-4 rounded-xl bg-gray-900 border border-gray-800">
-    <div class="flex items-center justify-between">
-      <div class="text-xs font-mono text-amber-400 uppercase tracking-wide">Open Agent Skills Ecosystem &amp; CLI</div>
-      <span class="text-xs font-mono text-gray-500">skills.sh &middot; npx skills find</span>
-    </div>
-    <div class="text-base font-bold font-mono mt-1">
-      <a href="https://skills.sh" target="_blank" class="text-amber-300 hover:underline">skills.sh</a>
-    </div>
-    <p class="text-xs text-gray-400 mt-1.5 m-0">
-      Discover, evaluate, and lock community workflow skills (<code>vercel-labs/skills@find-skills</code>, <code>wshobson/agents</code>).
-    </p>
-  </div>
-  <div class="p-4 rounded-xl bg-gray-900 border border-gray-800">
-    <div class="flex items-center justify-between">
-      <div class="text-xs font-mono text-emerald-400 uppercase tracking-wide">Google Antigravity &amp; Python SDK</div>
-      <span class="text-xs font-mono text-gray-500">antigravity.google</span>
-    </div>
-    <div class="text-base font-bold font-mono mt-1">
-      <a href="https://antigravity.google" target="_blank" class="text-emerald-300 hover:underline">antigravity.google</a>
-    </div>
-    <p class="text-xs text-gray-400 mt-1.5 m-0">
-      In-process <code>google-antigravity</code> Python SDK (<code>LocalAgentConfig</code>, <code>skills_paths</code>), <code>/plugin</code>, and <code>/agy-customizations</code>.
-    </p>
+  <div class="col-span-4 flex flex-col items-center justify-center p-5 rounded-xl bg-[#1a1b22] border border-gray-800">
+    <QrBadge size="lg" caption="Scan for the self-paced codelab" />
   </div>
 </div>
 
 <!--
-Everything we walked through today—the Slidev presentation deck, the chapter-marked `asciinema` recordings, the Brain Explorer Python Textual TUI, and the `a2ui-textual` skill we extracted—is up on GitHub at `github.com/domesticmouse/skills-three-ways-akl`. Thank you so much, DevFest Auckland—I'd love to take your questions!
+Everything we walked through today—the 90-minute self-paced codelab, this Slidev presentation deck, the `codelab/*` recovery checkpoint branches, the Brain Explorer Python Textual TUI, and the `a2ui-textual` reference skill—is up on GitHub at `github.com/domesticmouse/skills-three-ways-akl`. Keep experimenting at your own pace, and feel free to grab me with any questions!
 -->

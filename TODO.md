@@ -1,122 +1,26 @@
-# Skills Three Ways — Presentation TODO
+# Skills Three Ways — Codelab & Deck TODO
 
-Remaining tasks to complete the **Skills Three Ways** presentation (`PRESENTATION.md`) for DevFest Auckland 2026, based on the locked map [Skills Three Ways: DevFest Auckland 2026 Talk & Brain Explorer App](https://github.com/domesticmouse/skills-three-ways-akl/issues/1).
-
----
-
-## Completed Foundations (Reference)
-
-All planning and exploratory architecture tickets on [Skills Three Ways: DevFest Auckland 2026 Talk & Brain Explorer App](https://github.com/domesticmouse/skills-three-ways-akl/issues/1) are resolved:
-
-- [x] **Brain Explorer Architecture & Contract**: [Define the Brain Explorer user journey and Python SDK Pydantic contract](https://github.com/domesticmouse/skills-three-ways-akl/issues/2)
-- [x] **Talk Parameters & Four-Act Narrative Arc**: [Lock the Three Ways narrative arc and talk parameters](https://github.com/domesticmouse/skills-three-ways-akl/issues/3)
-- [x] **Exploratory Run App & EGM Cycles**: [Prototype the Python Textual TUI + Antigravity SDK Brain Explorer with EGM review cycles](https://github.com/domesticmouse/skills-three-ways-akl/issues/4) (`src/brain_explorer/`, `tests/`, `prototype/brain-explorer-tui`)
-- [x] **Way 3 Bespoke Skill Extraction & Verification**: [Extract and prototype the bespoke skill from the Exploratory Run with agy-customizations](https://github.com/domesticmouse/skills-three-ways-akl/issues/6) (`.agents/skills/a2ui-textual/`, `prototype/a2ui-textual-skill`)
-- [x] **Recording Script, `.cast` Chapters & Dataset**: [Script the Recording Run prompt sequence, asciinema .cast chapters, and canonical Session Trajectory dataset](https://github.com/domesticmouse/skills-three-ways-akl/issues/7)
-- [x] **Acts 2–4 Slide Blueprint & Speaker Notes**: [Lock the slide-by-slide layout blueprint and speaker notes for Acts 2–4 in slides/acts/](https://github.com/domesticmouse/skills-three-ways-akl/issues/8)
-- [x] **Act 1 Primer & Recording**: `slides/acts/01-primer.md` (`S1-01`–`S1-10`, 13 slides) and `recordings/final/what-are-agent-skills.cast` (synced to `slides/public/casts/what-are-agent-skills.cast`)
+Status and remaining release tasks for the **90-minute self-paced codelab** (`codelab/`) and **matching Slidev deck** (`slides/`).
 
 ---
 
-## Phase 1: Curate Canonical Session Trajectories & Execute the `asciinema` Recording Run
+## Completed Conversion Milestones
 
-Record the 5 modular `.cast` files under `recordings/final/` following the prompt script and 24 paired **Before / After** prompt-entry `"m"` chapter stop points locked in [Script the Recording Run prompt sequence, asciinema .cast chapters, and canonical Session Trajectory dataset](https://github.com/domesticmouse/skills-three-ways-akl/issues/7).
-
-### 1.1 Curate the Canonical `~/.gemini` Session Trajectories Dataset
-- [ ] Verify that **Brain Explorer** (`TrajectoryStore`) displays only the **4 headline build trajectories** (plus the 8 Cycle 1 and Cycle 2 **EGM** review subagent trajectories) for `skills-three-ways-akl`, excluding `/wayfinder` and `/grilling` meta-planning sessions:
-  - **Trajectory 1 — Way 1 Plugin Discovery** (`way-1-plugins-setup.cast`): `plugin` / `google-antigravity-sdk` (`way_1_plugin`)
-  - **Trajectory 2 — Way 2 Skill Evaluation** (`way-2-find-skills.cast`): `find-skills` (`way_2_community`)
-  - **Trajectory 3 — Two-Pass EGM Build Cycle** (`way-2-egm-cycle.cast`, plus Cycle 1 & Cycle 2 **EGM** subagent trajectories): `google-antigravity-sdk` + `egm-*` (`way_1_plugin`), `wshobson/agents` Python skills (`way_2_community`), `agy-brain-explorer` (`way_3_bespoke`)
-  - **Trajectory 4 — Way 3 Synthesis & Cold Verification** (`way-3-agy-customizations.cast`): `agy-customizations` (`way_1_plugin`), `writing-for-agents` (`way_2_community`), `a2ui-textual` (`way_3_bespoke` — reading `SKILL.md` and `references/a2ui-v1-textual-gotchas.md`)
-
-### 1.2 Record, Sanitise, Trim & Chapter-Mark the 5 `.cast` Files
-For each recording below, sanitise secrets (`sanitize-cast.py`), strip trailing shell exit prompts (`trim-cast.py --in-place`), and set/verify `"m"` chapter markers (`mark-cast.py --set` / `--list`):
-
-- [ ] **`recordings/final/way-1-plugins-setup.cast` (Act 2 · 6 stop points)**
-  - `m1` (`Before: Install find-skills`): Initial `zsh` prompt ready
-  - `m2` (`After: Install find-skills`): `npx skills add vercel-labs/skills@find-skills -g -y`
-  - `m3` (`Before: Launch agy`): `find-skills` installation finished; `zsh` prompt ready
-  - `m4` (`After: Launch agy`): `agy`
-  - `m5` (`Before: Verify Way 1 plugins prompt`): `agy` banner loaded and `>` prompt box empty
-  - `m6` (`After: Verify Way 1 plugins prompt`): `/plugin Please check that the Google Antigravity SDK plugin (google-antigravity-sdk) and the EGM review subagents are enabled for this workspace, and show me what skills and specialist agents they provide.`
-- [ ] **`recordings/final/way-2-find-skills.cast` (Act 3 Part 1 · 4 stop points)**
-  - `m1` (`Before: Search Python & Textual skills prompt`): `agy` prompt box empty
-  - `m2` (`After: Search Python & Textual skills prompt`): `We want to build Brain Explorer—a Python CLI and Textual TUI powered by the Google Antigravity SDK to inspect our ~/.gemini session trajectories. Use find-skills to search for Python and Textual TUI skills.`
-  - `m3` (`Before: Install wshobson/agents Python skills prompt`): `npx skills find python` and `npx skills find textual` evaluation complete; prompt box ready
-  - `m4` (`After: Install wshobson/agents Python skills prompt`): `Let's install the Python development skills from wshobson/agents into this repo so our agents follow uv, strict typing, async, and testing conventions.`
-- [ ] **`recordings/final/way-2-egm-cycle.cast` (Act 3 Part 2 · 4 stop points)**
-  - `m1` (`Before: Cycle 1 design & EGM audit prompt`): `agy` prompt box empty
-  - `m2` (`After: Cycle 1 design & EGM audit prompt`): `Using google-antigravity-sdk, agy-brain-explorer, and our Python skills, design a Brain Explorer Python CLI and Textual TUI that inspects ~/.gemini session trajectories and skill activations, then run an EGM review cycle (egm-design, egm-zoom-out, egm-codebase-details, egm-implementation-readiness) on the design.`
-  - `m3` (`Before: Cycle 2 implement & EGM audit prompt`): Cycle 1 resolution summary rendered; prompt box ready
-  - `m4` (`After: Cycle 2 implement & EGM audit prompt`): `Implement the hybrid TrajectoryStore, isolated AgentService, and Textual A2UI v1.0 renderer, then run a second EGM review pass and verify with ruff, mypy, and pytest.`
-- [ ] **`recordings/final/way-3-agy-customizations.cast` (Act 4 Part 1 · 4 stop points)**
-  - `m1` (`Before: /agy-customizations synthesis prompt`): `agy` prompt box empty
-  - `m2` (`After: /agy-customizations synthesis prompt`): `/agy-customizations Please turn what we learned building and reviewing our A2UI v1.0 Textual renderer and Antigravity SDK integration into a reusable workspace skill`
-  - `m3` (`Before: Phase 3 cold-session verification prompt`): `.agents/skills/a2ui-textual/` synthesised and registered; cold-session prompt box empty
-  - `m4` (`After: Phase 3 cold-session verification prompt`): `Build an A2UI v1.0 surface for our Python Textual TUI that compares Skill Activations across Way 1 plugins, Way 2 community skills, and Way 3 bespoke skills with interactive tabs and a tier filter.`
-- [ ] **`recordings/final/way-3-brain-explorer-payoff.cast` (Act 4 Part 2 · 6 stop points)**
-  - `m1` (`Before: CLI sessions overview command`): `zsh` prompt ready
-  - `m2` (`After: CLI sessions overview command`): `uv run brain-explorer sessions --project skills-three-ways-akl`
-  - `m3` (`Before: Launch Brain Explorer TUI command`): CLI sessions table rendered; `zsh` prompt ready
-  - `m4` (`After: Launch Brain Explorer TUI command`): `uv run brain-explorer`
-  - `m5` (`Before: In-TUI A2UI v1.0 prompt`): **Brain Explorer** TUI open (`Ctrl+B` sidebar browsed), `/` prompt input focused and empty
-  - `m6` (`After: In-TUI A2UI v1.0 prompt`): `Compare how Way 1 plugin skills, Way 2 community skills, and Way 3 bespoke skills were activated across our Brain Explorer build sessions, and group them into an interactive A2UI v1.0 tabbed breakdown.`
-
-### 1.3 Sync Cast Recordings into Slidev
-- [ ] Run `npm --prefix slides run sync-casts` and confirm all 6 `.cast` files (`what-are-agent-skills.cast` + the 5 Act 2–4 recordings) are present in `slides/public/casts/`.
+- [x] **Brain Explorer Dynamic Tier Detection**: Updated [`src/brain_explorer/trajectory_store.py`](src/brain_explorer/trajectory_store.py) to classify any workspace skill in `.agents/skills/` absent from `skills-lock.json` as `way_3_bespoke` (backed by `test_dynamic_bespoke_skill_classification_via_skills_lock` in [`tests/test_trajectory_store.py`](tests/test_trajectory_store.py)).
+- [x] **Self-Contained Dark-Theme Web Codelab (`codelab/`)**: Built [`codelab/build.mjs`](codelab/build.mjs), [`codelab/assets/style.css`](codelab/assets/style.css), [`codelab/assets/codelab.js`](codelab/assets/codelab.js), and 6 progressive labs (`codelab/steps/00-setup.md`–`05-brain-explorer.md`) with copy buttons, `localStorage` progress, collapsible troubleshooting/reference debriefs, and vector QR SVG generation (`codelab/dist/assets/codelab-qr.svg` & `slides/public/images/codelab-qr.svg`).
+- [x] **Retired `asciinema` Pipeline & CAST Assets**: Uninstalled `asciinema-player`, removed `AsciinemaPlayer.vue`, `cast-full.vue`, `recordings/`, `slides/public/casts/`, and `RUNSHEET.md`.
+- [x] **Refactored Matching Slidev Deck (`slides/`)**: Added [`QrBadge.vue`](slides/components/QrBadge.vue), [`PromptCard.vue`](slides/components/PromptCard.vue), and [`lab-step.vue`](slides/layouts/lab-step.vue); added QR onboarding slide `S1-01e`; converted all 6 cast slides (`S1-05`, `S2-03`, `S3-03`, `S3-06`, `S4-03`, `S4-06`) into `lab-step` slides; updated `S4-09` and speaker notes in `slides/acts/01`–`04`; enabled `routerMode: hash` for subpath deep links.
+- [x] **Unified GitHub Pages Workflow**: Replaced `deploy-slides.yml` with [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) publishing `codelab/dist/` at `/skills-three-ways-akl/` and `slides/dist/` at `/skills-three-ways-akl/slides/`.
+- [x] **Checkpoint Branch Generator & Docs**: Added [`scripts/create-codelab-checkpoints.sh`](scripts/create-codelab-checkpoints.sh) and updated [`GLOSSARY.md`](GLOSSARY.md) and [`README.md`](README.md).
 
 ---
 
-## Phase 2: Author Acts 2–4 Slidev Files (`slides/acts/`) & Wire `slides/slides.md`
+## Remaining Release Tasks
 
-Implement the 23 locked slides across Acts 2–4 per [Lock the slide-by-slide layout blueprint and speaker notes for Acts 2–4 in slides/acts/](https://github.com/domesticmouse/skills-three-ways-akl/issues/8), following `/slidev-deck` and `/bjm-voice`.
-
-- [x] **Author `slides/acts/02-way-1-plugins.md` (~8 mins, 6 slides: `S2-01`–`S2-06`)**
-  - `S2-01` (`layout: center`): Way 1 Act Divider
-  - `S2-02` (`layout: default`): *What Official Plugins Bring to the Table*
-  - `S2-03` (`layout: cast-full`): `/casts/way-1-plugins-setup.cast` *(placeholder card in place; auto-switches to `asciinema-player` once synced)*
-  - `S2-04` (`layout: skill-breakdown`, `way: 1`): *Inside `google-antigravity-sdk`: In-Process Agent & `LocalAgentConfig`*
-  - `S2-05` (`layout: skill-breakdown`, `way: 1`): *Inside the EGM Plugin: Specialist Review Subagents*
-  - `S2-06` (`layout: default`): *Way 1 Takeaway: Guardrails Before We Write a Line of Python*
-- [x] **Author `slides/acts/03-way-2-community.md` (~10 mins, 8 slides: `S3-01`–`S3-08`)**
-  - `S3-01` (`layout: center`): Way 2 Act Divider
-  - `S3-02` (`layout: default`): *Evaluating Community Skills with `find-skills`*
-  - `S3-03` (`layout: cast-full`): `/casts/way-2-find-skills.cast` *(placeholder card in place; auto-switches to `asciinema-player` once synced)*
-  - `S3-04` (`layout: skill-breakdown`, `way: 2`): *What We Installed vs. The Gap We Found*
-  - `S3-05` (`layout: default`): *EGM Cycle 1: Naive Full-Delegation vs. Hybrid Architecture* (2-column red/emerald split)
-  - `S3-06` (`layout: cast-full`): `/casts/way-2-egm-cycle.cast` *(placeholder card in place; auto-switches to `asciinema-player` once synced)*
-  - `S3-07` (`layout: skill-breakdown`, `way: mashup`): *EGM Cycle 2 Part 1: A2UI v1.0 Protocol & Schema Traps*
-  - `S3-08` (`layout: skill-breakdown`, `way: mashup`): *EGM Cycle 2 Part 2: Textual Widget & Runtime Isolation Traps*
-- [x] **Author `slides/acts/04-way-3-bespoke.md` (~12 mins, 9 slides: `S4-01`–`S4-09`)**
-  - `S4-01` (`layout: center`): Way 3 Act Divider
-  - `S4-02` (`layout: default`): *Bespoke Skills Already Powering This Repo*
-  - `S4-03` (`layout: cast-full`): `/casts/way-3-agy-customizations.cast` *(placeholder card in place; auto-switches to `asciinema-player` once synced)*
-  - `S4-04` (`layout: skill-breakdown`, `way: 3`): *Inside `.agents/skills/a2ui-textual/SKILL.md` (Tiers 1 & 2)*
-  - `S4-05` (`layout: skill-breakdown`, `way: 3`): *Inside `references/a2ui-v1-textual-gotchas.md` (Tier 3 Deep Context)*
-  - `S4-06` (`layout: cast-full`): `/casts/way-3-brain-explorer-payoff.cast` *(placeholder card in place; auto-switches to `asciinema-player` once synced)*
-  - `S4-07` (`layout: skill-breakdown`, `way: mashup`): *What Brain Explorer Revealed: 4 Build Trajectories Across Three Ways*
-  - `S4-08` (`layout: default`): *Skills Three Ways: Choosing the Right Tier for the Job*
-  - `S4-09` (`layout: default`): *Links & Resources*
-- [x] **Wire `slides/slides.md`**: Append `src: ./acts/02-way-1-plugins.md`, `src: ./acts/03-way-2-community.md`, and `src: ./acts/04-way-3-bespoke.md`.
-- [x] **Formatting & Voice Audit**:
-  - Confirm every slide has a unique `<!-- S#-## -->` anchor tag, clean `<h2>` flex header (or dedicated layout title), and `<ol>` numbered concept lists where specified.
-  - Confirm all fenced code blocks inside HTML `<div>` containers sit flush at column 0 with blank lines above and below.
-  - Confirm Australian English spelling (`realise`, `colour`, `labelled`, `organisation`, `modelled`) and conversational speaker notes with zero bracketed stage directions (`[Click]`, `[Next slide]`).
-
----
-
-## Phase 3: Slidev Verification, Stage Rehearsal & Deployment
-
-- [ ] **Preview Local Slidev Deck**:
-  - Start the dev server via `.agents/skills/slidev-deck/scripts/slides-server.sh start` and confirm `RUNNING` (`HTTP: 200` / `304`) via `status`.
-  - Inspect all 36 slides across `http://localhost:3030/`, `/presenter` (speaker notes + timer), and `/overview`.
-  - Test `[` / `]` / `p` chapter navigation and playback timing (`<= 30s` per segment at `speed: 2.0`) across all 6 embedded `.cast` players.
-- [x] **Verify Static Production Build**:
-  - Run `npm --prefix slides run build` and confirm exit code `0` producing `slides/dist/index.html` (`--base /skills-three-ways-akl/`).
-- [ ] **Configure Automated GitHub Pages Deployment**:
-  - [x] Create `.github/workflows/deploy-slides.yml` from `.agents/skills/slidev-deck/resources/deploy-slides.yml` with `on.push.paths` covering `'slides/**'` and `'recordings/final/**'` (plus `slides/package-lock.json` for `npm ci`).
-  - [ ] Verify repository GitHub Pages settings use **Build and deployment > Source: GitHub Actions** (`gh api repos/domesticmouse/skills-three-ways-akl/pages` currently returns `404` until enabled in GitHub repository Settings).
-- [ ] **Final Repo Hygiene & Map Closure**:
-  - [x] Run `uv run ruff check src tests`, `uv run mypy src`, and `uv run pytest -v` to confirm **Brain Explorer** checks remain green on `main`.
-  - [x] Update `README.md` with setup and run instructions for **Brain Explorer** and the Slidev deck.
-  - [ ] Do a timed dry run (~35 mins talk + 5 mins Q&A) and close [Skills Three Ways: DevFest Auckland 2026 Talk & Brain Explorer App](https://github.com/domesticmouse/skills-three-ways-akl/issues/1).
+- [ ] **Commit & Push `main` + `codelab/*` Checkpoint Branches**:
+  - Review `git status` and commit the codelab + Slidev deck changes on `main`.
+  - Push `main` and all 4 checkpoint branches (`codelab/start`, `codelab/checkpoint-2-skills`, `codelab/checkpoint-3-brain-explorer`, `codelab/checkpoint-4-bespoke-skill`) to `origin`.
+- [ ] **Verify GitHub Pages Settings**:
+  - In GitHub repository Settings, set **Pages > Build and deployment > Source** to **GitHub Actions** and confirm both `https://domesticmouse.github.io/skills-three-ways-akl/` and `https://domesticmouse.github.io/skills-three-ways-akl/slides/` render cleanly after workflow completion.
+- [ ] **Timed 90-Minute Dry Run**:
+  - Walk through `codelab/start` end-to-end as a fresh learner (verifying QR scan from projector/screen, copy buttons on `https:` / `localhost`, Lab 3 Path 1 & Path 2 timings, and Lab 5 Brain Explorer against fresh `~/.gemini` sessions).

@@ -213,3 +213,60 @@ def test_search_thinking_project_ordering_and_compare(tmp_path: Path) -> None:
 
     with pytest.raises(ValueError, match="compare a session with itself"):
         store.compare_sessions("11111111", "11111111-aaaa-bbbb-cccc-000000000001")
+
+
+def test_dynamic_bespoke_skill_classification_via_skills_lock(tmp_path: Path) -> None:
+    workspace_dir = tmp_path / "learner-lab"
+    workspace_dir.mkdir()
+    (workspace_dir / ".git").mkdir()
+    (workspace_dir / "skills-lock.json").write_text(
+        json.dumps(
+            {
+                "version": 2,
+                "skills": {
+                    "python-type-safety": {"source": "wshobson/agents"},
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    community_skill = workspace_dir / ".agents" / "skills" / "python-type-safety" / "SKILL.md"
+    community_skill.parent.mkdir(parents=True)
+    community_skill.write_text("# python-type-safety\n", encoding="utf-8")
+
+    bespoke_skill = workspace_dir / ".agents" / "skills" / "my-custom-tui-skill" / "SKILL.md"
+    bespoke_skill.parent.mkdir(parents=True)
+    bespoke_skill.write_text("# my-custom-tui-skill\n", encoding="utf-8")
+
+    _write_session(
+        tmp_path,
+        "antigravity",
+        "33333333-aaaa-bbbb-cccc-000000000003",
+        steps=[
+            {
+                "step_index": 0,
+                "source": "USER_EXPLICIT",
+                "type": "USER_INPUT",
+                "created_at": "2026-11-20T10:00:00Z",
+                "content": "<USER_REQUEST>Build interactive A2UI tabs</USER_REQUEST>",
+            },
+            {
+                "step_index": 1,
+                "source": "MODEL",
+                "type": "PLANNER_RESPONSE",
+                "created_at": "2026-11-20T10:01:00Z",
+                "content": "Reading skills.",
+                "tool_calls": [
+                    {"name": "read_file", "args": {"Path": str(community_skill)}},
+                    {"name": "read_file", "args": {"Path": str(bespoke_skill)}},
+                ],
+            },
+        ],
+    )
+
+    store = TrajectoryStore(gemini_dir=tmp_path)
+    sessions = store.list_sessions(limit=5).sessions
+    assert len(sessions) == 1
+    by_name = {item.skill_name: item for item in sessions[0].skill_activations}
+    assert by_name["python-type-safety"].tier == "way_2_community"
+    assert by_name["my-custom-tui-skill"].tier == "way_3_bespoke"

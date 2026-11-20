@@ -56,46 +56,41 @@ Remember how we installed `find-skills` in Act 2? Because `find-skills` is itsel
 -->
 
 ---
-layout: cast-full
-title: "Searching Python & Textual Skills and Installing wshobson/agents"
-cast: /casts/way-2-find-skills.cast
-autoPlay: false
-speed: 2.0
-idleTimeLimit: 2.0
-fit: both
+layout: lab-step
+step: "Lab 2"
+way: 2
+duration: "~10 min"
+title: "Searching &amp; Installing Community Skills"
+codelabAnchor: "#step-2"
+checkpoint: "codelab/checkpoint-2-skills"
 ---
 
 <!-- S3-03 -->
-<div class="w-full max-w-4xl mx-auto p-5 rounded-xl bg-[#1a1b26] border border-amber-500/30 shadow-2xl space-y-4">
-  <div class="flex items-start justify-between gap-4 pb-3 border-b border-gray-800">
-    <div>
-      <div class="text-xs font-mono text-amber-400 uppercase tracking-wider">Trajectory 2 &middot; Way 2 Skill Evaluation</div>
-      <h3 class="text-lg font-bold text-white mt-0.5 m-0">Searching Python &amp; Textual Skills and Installing wshobson/agents</h3>
-      <div class="text-xs font-mono text-gray-400 mt-1">Target cast: <code>/casts/way-2-find-skills.cast</code></div>
-    </div>
-    <span class="shrink-0 px-2.5 py-1 rounded-full text-xs font-mono border border-amber-500/40 bg-amber-500/10 text-amber-300">
-      CAST Placeholder &middot; 4 Stop Points (m1&ndash;m4)
-    </span>
-  </div>
-  <div class="space-y-3 text-xs font-mono">
-    <div class="p-3.5 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1.5">
-      <div class="text-amber-300 font-semibold">m1 &rarr; m2 &middot; Before / After: Search Python &amp; Textual skills prompt</div>
-      <div class="text-gray-400">m1: <code>agy</code> prompt box empty</div>
-      <div class="text-gray-200 leading-relaxed">m2: <code>We want to build Brain Explorer&mdash;a Python CLI and Textual TUI powered by the Google Antigravity SDK to inspect our ~/.gemini session trajectories. Use find-skills to search for Python and Textual TUI skills.</code></div>
-    </div>
-    <div class="p-3.5 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1.5">
-      <div class="text-amber-300 font-semibold">m3 &rarr; m4 &middot; Before / After: Install wshobson/agents Python skills prompt</div>
-      <div class="text-gray-400">m3: <code>npx skills find python</code> and <code>npx skills find textual</code> evaluation complete; prompt box ready</div>
-      <div class="text-gray-200 leading-relaxed">m4: <code>Let's install the Python development skills from wshobson/agents into this repo so our agents follow uv, strict typing, async, and testing conventions.</code></div>
-    </div>
-  </div>
-  <div class="text-[11px] font-mono text-gray-500 pt-1">
-    Awaiting <code>recordings/final/way-2-find-skills.cast</code> &mdash; switches automatically to <code>asciinema-player</code> once synced.
-  </div>
-</div>
+
+<PromptCard
+  kind="prompt"
+  way="2"
+  label="1. Search Python &amp; Textual skills via find-skills"
+  text="We want to build Brain Explorer—a Python CLI and Textual TUI powered by the Google Antigravity SDK to inspect our ~/.gemini session trajectories. Use find-skills to search for Python and Textual TUI skills."
+/>
+
+<PromptCard
+  kind="prompt"
+  way="2"
+  label="2. Install wshobson/agents Python skills"
+  text="Let's install the Python development skills from wshobson/agents into this repo so our agents follow uv, strict typing, async, and testing conventions."
+/>
+
+::verify::
+
+<ul class="list-disc pl-4 space-y-1.5">
+  <li><code>npx skills find python</code> surfaces <code>wshobson/agents</code> with install &amp; trust signals.</li>
+  <li><code>npx skills find textual</code> returns zero mature skills for Textual + A2UI v1.0.</li>
+  <li><code>.agents/skills/</code> and <code>skills-lock.json</code> are populated cleanly on disk.</li>
+</ul>
 
 <!--
-Let's watch this play out in `way-2-find-skills.cast`. At our first prompt stop point, we tell Antigravity we want to build Brain Explorer—a Python CLI and Textual TUI powered by the Google Antigravity SDK—and ask it to use `find-skills` to search for Python and Textual skills. It runs `npx skills find python` and `npx skills find textual`, surfaces the `wshobson/agents` Python development suite along with its install counts and repository metrics, and flags that there are no dedicated skills covering Textual TUIs with A2UI v1.0. At our second prompt stop point, we ask Antigravity to install the Python skills from `wshobson/agents` into the repo, populating `.agents/skills/` and locking their hashes in `skills-lock.json`.
+Start Lab 2 now. First, tell Antigravity you want to build Brain Explorer and ask it to search `find-skills` for Python and Textual skills. Notice what comes back: rich Python coverage from `wshobson/agents`, and zero dedicated skills for Textual TUIs with A2UI v1.0. Then paste the second prompt to install the Python suite into `.agents/skills/` and lock their hashes in `skills-lock.json`.
 -->
 
 ---
@@ -128,7 +123,7 @@ Coverage Gap Surfaced by `npx skills find textual`:
 </div>
 
 <!--
-Here is the snapshot of our workspace after that command finishes. On the top, we have 17 battle-tested Python skills from `wshobson/agents` wired into `.agents/skills/` and pinned in `skills-lock.json`—covering `uv-package-manager`, `python-project-structure`, `python-type-safety`, `async-python-patterns`, `python-testing-patterns`, and more. On the bottom is the gap `find-skills` exposed: zero community skills for wiring A2UI v1.0 generative surfaces into Textual 8+. Knowing that gap exists before we start coding is gold, because it tells us exactly where to point our EGM review subagents.
+Here is the workspace snapshot once Lab 2 finishes. On the top, 17 battle-tested Python skills from `wshobson/agents` live in `.agents/skills/` and are pinned in `skills-lock.json`—covering `uv-package-manager`, `python-project-structure`, `python-type-safety`, `async-python-patterns`, `python-testing-patterns`, and more. On the bottom is the gap `find-skills` exposed: zero community skills for wiring A2UI v1.0 generative surfaces into Textual 8+. Knowing that gap exists before we start coding tells us right where to point our EGM review subagents in Lab 3.
 -->
 
 ---
@@ -137,7 +132,7 @@ layout: default
 
 <!-- S3-05 -->
 <div class="flex items-center gap-3 mb-4">
-  <h2 class="text-2xl font-bold m-0">EGM Cycle 1: Naive Full-Delegation vs. Hybrid Architecture</h2>
+  <h2 class="text-2xl font-bold m-0">Reference Pattern &middot; EGM Cycle 1: Naive vs. Hybrid Architecture</h2>
 </div>
 
 <div class="grid grid-cols-2 gap-6 mt-6">
@@ -164,50 +159,49 @@ layout: default
 </div>
 
 <!--
-When we asked Antigravity to draft the initial architecture for Brain Explorer and immediately ran our first EGM review pass, `egm-design` and `egm-zoom-out` caught a classic agent-first anti-pattern right away. The naive design on the left wanted to route every TUI interaction through the in-process LLM agent—even listing `~/.gemini` directories and counting Skill Activations. That would mean multi-second latency on every keystroke and, worse, each inspection query would write a new session trajectory back into `~/.gemini`, polluting the dataset we were trying to inspect! On the right is the hybrid architecture EGM Cycle 1 forced us into: a fast, deterministic local `TrajectoryStore` that parses `transcript.jsonl` and classifies Skill Activations in milliseconds, paired with an isolated, read-only `AgentService` that redirects its `app_data_dir` outside `~/.gemini` and only runs when you press `/` to ask for a generative A2UI v1.0 surface.
+In Lab 3 Part A, you are going to ask Antigravity to design Brain Explorer and run an EGM review pass before writing code. Keep an eye out for a classic agent-first anti-pattern that `egm-design` and `egm-zoom-out` caught right away in our reference run. The naive design on the left wanted to route every TUI interaction through the in-process LLM agent—even listing `~/.gemini` directories and counting Skill Activations. That adds multi-second latency on every keystroke and writes new session trajectories straight back into `~/.gemini`, polluting the very dataset you are inspecting! On the right is the hybrid architecture EGM Cycle 1 pushed us into: a fast, deterministic local `TrajectoryStore` paired with an isolated, read-only `AgentService` that redirects `app_data_dir` outside `~/.gemini`.
 -->
 
 ---
-layout: cast-full
-title: "Two-Pass EGM Architecture & Implementation Review"
-cast: /casts/way-2-egm-cycle.cast
-autoPlay: false
-speed: 2.0
-idleTimeLimit: 2.0
-fit: both
+layout: lab-step
+step: "Lab 3"
+way: 2
+duration: "~30 min"
+title: "Two-Pass EGM Architecture &amp; Build Cycle"
+codelabAnchor: "#step-3"
+checkpoint: "codelab/checkpoint-3-brain-explorer"
 ---
 
 <!-- S3-06 -->
-<div class="w-full max-w-4xl mx-auto p-5 rounded-xl bg-[#1a1b26] border border-purple-500/30 shadow-2xl space-y-4">
-  <div class="flex items-start justify-between gap-4 pb-3 border-b border-gray-800">
-    <div>
-      <div class="text-xs font-mono text-purple-400 uppercase tracking-wider">Trajectory 3 &middot; Two-Pass EGM Build Cycle (+ 8 EGM Subagents)</div>
-      <h3 class="text-lg font-bold text-white mt-0.5 m-0">Two-Pass EGM Architecture &amp; Implementation Review</h3>
-      <div class="text-xs font-mono text-gray-400 mt-1">Target cast: <code>/casts/way-2-egm-cycle.cast</code></div>
-    </div>
-    <span class="shrink-0 px-2.5 py-1 rounded-full text-xs font-mono border border-amber-500/40 bg-amber-500/10 text-amber-300">
-      CAST Placeholder &middot; 4 Stop Points (m1&ndash;m4)
-    </span>
-  </div>
-  <div class="space-y-3 text-xs font-mono">
-    <div class="p-3.5 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1.5">
-      <div class="text-purple-300 font-semibold">m1 &rarr; m2 &middot; Before / After: Cycle 1 design &amp; EGM audit prompt</div>
-      <div class="text-gray-400">m1: <code>agy</code> prompt box empty</div>
-      <div class="text-gray-200 leading-relaxed">m2: <code>Using google-antigravity-sdk, agy-brain-explorer, and our Python skills, design a Brain Explorer Python CLI and Textual TUI that inspects ~/.gemini session trajectories and skill activations, then run an EGM review cycle (egm-design, egm-zoom-out, egm-codebase-details, egm-implementation-readiness) on the design.</code></div>
-    </div>
-    <div class="p-3.5 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1.5">
-      <div class="text-purple-300 font-semibold">m3 &rarr; m4 &middot; Before / After: Cycle 2 implement &amp; EGM audit prompt</div>
-      <div class="text-gray-400">m3: Cycle 1 resolution summary rendered; prompt box ready</div>
-      <div class="text-gray-200 leading-relaxed">m4: <code>Implement the hybrid TrajectoryStore, isolated AgentService, and Textual A2UI v1.0 renderer, then run a second EGM review pass and verify with ruff, mypy, and pytest.</code></div>
-    </div>
-  </div>
-  <div class="text-[11px] font-mono text-gray-500 pt-1">
-    Awaiting <code>recordings/final/way-2-egm-cycle.cast</code> &mdash; switches automatically to <code>asciinema-player</code> once synced.
-  </div>
+
+<PromptCard
+  kind="prompt"
+  way="2"
+  label="Part A (~10 min) · Cycle 1 design &amp; EGM audit"
+  text="Using google-antigravity-sdk, agy-brain-explorer, and our Python skills, design a Brain Explorer Python CLI and Textual TUI that inspects ~/.gemini session trajectories and skill activations, then run an EGM review cycle (egm-design, egm-zoom-out, egm-codebase-details, egm-implementation-readiness) on the design."
+/>
+
+<PromptCard
+  kind="prompt"
+  way="2"
+  label="Part B Path 1 (~20 min) · Cycle 2 implement, audit &amp; verify"
+  text="Implement the hybrid TrajectoryStore, isolated AgentService, and Textual A2UI v1.0 renderer, then run a second EGM review pass and verify with ruff, mypy, and pytest."
+/>
+
+<div class="p-3 rounded-xl bg-gray-900/70 border border-gray-800 text-xs text-gray-300">
+  <strong class="text-amber-300">Short on time or API quota for Part B?</strong> Follow <strong>Path 2 (Fast Track)</strong> in the codelab: check out <code>codelab/checkpoint-3-brain-explorer</code>, run <code>uv sync &amp;&amp; uv run pytest -v</code>, and ask <code>egm-codebase-details</code> to audit the reference traps.
 </div>
 
+::verify::
+
+<ul class="list-disc pl-4 space-y-1.5">
+  <li>Cycle 1 produces the Hybrid split (deterministic <code>TrajectoryStore</code> + isolated <code>AgentService</code>).</li>
+  <li>Part B completes either via Path 1 (Full Build) or Path 2 (Fast Track checkpoint).</li>
+  <li><code>uv run ruff check src tests</code>, <code>uv run mypy src</code>, and <code>uv run pytest -v</code> all pass.</li>
+</ul>
+
 <!--
-Let's watch both EGM cycles in `way-2-egm-cycle.cast`. At our first prompt stop point, we ask Antigravity to design Brain Explorer using `google-antigravity-sdk`, `agy-brain-explorer`, and our `wshobson/agents` Python skills, and then run an EGM review pass before writing implementation code. You can see the four EGM subagents fan out and converge on the hybrid `TrajectoryStore` plus isolated `AgentService` split. At our second prompt stop point, we tell Antigravity to implement the hybrid store, the isolated SDK agent, and the Textual A2UI v1.0 renderer, and then run a second EGM review pass verified with `ruff`, `mypy`, and `pytest`. Watch how Cycle 2 surfaces ten concrete A2UI v1.0 and Textual 8+ integration bugs—and resolves every single one until the test suite turns green.
+Lab 3 is the big 30-minute build block, split into two parts. Everyone runs Part A (~10 minutes): paste the Cycle 1 prompt and watch the four EGM subagents fan out and critique your initial architecture. For Part B (~20 minutes), choose your own adventure in the codelab: either run the full Cycle 2 implementation prompt live, or take Path 2 (Fast Track) by checking out `codelab/checkpoint-3-brain-explorer` and running `egm-codebase-details` across the finished reference files so you stay on schedule for Labs 4 and 5.
 -->
 
 ---
@@ -243,7 +237,7 @@ staging.process_messages(raw_messages)  # Raises A2uiError without wiping active
 </div>
 
 <!--
-Let's unpack what those EGM Cycle 2 reviewers and our `pytest` suite actually caught—because this is where the missing Textual and A2UI v1.0 skill bit us during the Exploratory Run. First, A2UI v1.0 changed `DataBinding` syntax from `"path"` to `"@path"`, except inside `TemplateChildList`, which still keys the collection path under `"path"`. Second, under v1.0 `STRICT_VALIDATION`, `Text.variant` only permits `"body"` and `"caption"`—using `"h1"` through `"h5"` crashes validation. And third, if you feed raw agent messages straight into your live `MessageProcessor`, a single malformed turn wipes out the existing surface or triggers `A2uiIntegrityError` on duplicate `createSurface` IDs. Creating a throwaway staging `MessageProcessor` first keeps the live UI rock-solid.
+Compare what your agent surfaced in Cycle 2 with the protocol traps our Exploratory Run hit—because this is right where that missing Textual and A2UI v1.0 skill bit us. First, A2UI v1.0 changed `DataBinding` syntax from `"path"` to `"@path"`, except inside `TemplateChildList`, which still keys the collection path under `"path"`. Second, under v1.0 `STRICT_VALIDATION`, `Text.variant` only permits `"body"` and `"caption"`—using `"h1"` through `"h5"` crashes validation. And third, if you feed raw agent messages straight into your live `MessageProcessor`, a single malformed turn wipes out the existing surface or triggers `A2uiIntegrityError` on duplicate `createSurface` IDs. Creating a throwaway staging `MessageProcessor` first keeps the live UI rock-solid.
 -->
 
 ---
@@ -280,5 +274,5 @@ for h in list(logger.handlers):
 </div>
 
 <!--
-The second half of the Cycle 2 findings lived at the seam between A2UI, Textual 8+, and the in-process Antigravity SDK. Textual 8 replaced `Select.BLANK` with `Select.NULL`, while A2UI's `ChoicePicker` expects a `list[str]` rather than a scalar string. Even subtler: if you call `data_context.resolve_action(...)` while building the `Button` widget, you freeze the initial form state and ignore everything the user types into inputs or dropdowns afterwards—you have to store the `DataContext` on the button and resolve the action inside `on_button_pressed`. Finally, the in-process SDK attaches console `StreamHandler` loggers to `google.antigravity` and `absl` that write straight to `stderr` and corrupt Textual's alternate screen buffer unless you strip non-file stream handlers before launch. Fixing all ten of these traps took real detective work—which sets up our big question for Act 4: how do we make sure no agent in our repo ever hits those ten traps again?
+The second half of the Cycle 2 findings lived at the seam between A2UI, Textual 8+, and the in-process Antigravity SDK. Textual 8 replaced `Select.BLANK` with `Select.NULL`, while A2UI's `ChoicePicker` expects a `list[str]` rather than a scalar string. Even subtler: if you call `data_context.resolve_action(...)` while building the `Button` widget, you freeze the initial form state and ignore everything the user types into inputs or dropdowns afterwards—you have to store the `DataContext` on the button and resolve the action inside `on_button_pressed`. Finally, the in-process SDK attaches console `StreamHandler` loggers to `google.antigravity` and `absl` that write straight to `stderr` and corrupt Textual's alternate screen buffer unless you strip non-file stream handlers before launch. Fixing all ten of these traps took real detective work—which sets up our big question for Lab 4: how do we make sure no agent in our repo ever hits those traps again?
 -->

@@ -58,51 +58,48 @@ Why start with plugins rather than immediately writing your own skills or scrapi
 -->
 
 ---
-layout: cast-full
-title: "Bootstrapping find-skills & Verifying Way 1 Plugins in agy"
-cast: /casts/way-1-plugins-setup.cast
-autoPlay: false
-speed: 2.0
-idleTimeLimit: 2.0
-fit: both
+layout: lab-step
+step: "Lab 1"
+way: 1
+duration: "~10 min"
+title: "Bootstrapping find-skills &amp; Way 1 Plugins"
+codelabAnchor: "#step-1"
+checkpoint: "codelab/start"
 ---
 
 <!-- S2-03 -->
-<div class="w-full max-w-4xl mx-auto p-5 rounded-xl bg-[#1a1b26] border border-cyan-500/30 shadow-2xl space-y-3.5">
-  <div class="flex items-start justify-between gap-4 pb-3 border-b border-gray-800">
-    <div>
-      <div class="text-xs font-mono text-cyan-400 uppercase tracking-wider">Trajectory 1 &middot; Way 1 Plugin Discovery</div>
-      <h3 class="text-lg font-bold text-white mt-0.5 m-0">Bootstrapping find-skills &amp; Verifying Way 1 Plugins in agy</h3>
-      <div class="text-xs font-mono text-gray-400 mt-1">Target cast: <code>/casts/way-1-plugins-setup.cast</code></div>
-    </div>
-    <span class="shrink-0 px-2.5 py-1 rounded-full text-xs font-mono border border-amber-500/40 bg-amber-500/10 text-amber-300">
-      CAST Placeholder &middot; 6 Stop Points (m1&ndash;m6)
-    </span>
-  </div>
-  <div class="space-y-2 text-xs font-mono">
-    <div class="p-3 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1">
-      <div class="text-cyan-300 font-semibold">m1 &rarr; m2 &middot; Before / After: Install find-skills</div>
-      <div class="text-gray-400">m1: Clean <code>zsh</code> prompt ready</div>
-      <div class="text-gray-200">m2: <code>npx skills add vercel-labs/skills@find-skills -g -y</code></div>
-    </div>
-    <div class="p-3 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1">
-      <div class="text-cyan-300 font-semibold">m3 &rarr; m4 &middot; Before / After: Launch agy</div>
-      <div class="text-gray-400">m3: <code>find-skills</code> installation finished; <code>zsh</code> prompt ready</div>
-      <div class="text-gray-200">m4: <code>agy</code></div>
-    </div>
-    <div class="p-3 rounded-lg bg-[#121317] border border-gray-800/80 space-y-1">
-      <div class="text-cyan-300 font-semibold">m5 &rarr; m6 &middot; Before / After: Verify Way 1 plugins prompt</div>
-      <div class="text-gray-400">m5: <code>agy</code> banner loaded and <code>&gt;</code> prompt box empty</div>
-      <div class="text-gray-200 leading-relaxed">m6: <code>/plugin Please check that the Google Antigravity SDK plugin (google-antigravity-sdk) and the EGM review subagents are enabled for this workspace, and show me what skills and specialist agents they provide.</code></div>
-    </div>
-  </div>
-  <div class="text-[11px] font-mono text-gray-500 pt-1">
-    Awaiting <code>recordings/final/way-1-plugins-setup.cast</code> &mdash; switches automatically to <code>asciinema-player</code> once synced.
-  </div>
-</div>
+
+<PromptCard
+  kind="command"
+  way="1"
+  label="1. Install find-skills globally &amp; launch agy"
+  text="npx skills add vercel-labs/skills@find-skills -g -y && agy"
+/>
+
+<PromptCard
+  kind="command"
+  way="1"
+  label="2. Enable google-antigravity-sdk &amp; egm via /plugin"
+  text="/plugin"
+/>
+
+<PromptCard
+  kind="prompt"
+  way="1"
+  label="3. Verify Way 1 plugins &amp; subagents"
+  text="Please check that the Google Antigravity SDK plugin (google-antigravity-sdk) and the EGM review subagents are enabled for this workspace, and show me what skills and specialist agents they provide."
+/>
+
+::verify::
+
+<ul class="list-disc pl-4 space-y-1.5">
+  <li><code>npx skills add vercel-labs/skills@find-skills -g -y</code> installed cleanly.</li>
+  <li>Both <code>google-antigravity-sdk</code> and <code>egm</code> enabled in <code>/plugin</code> (bonus plugins are optional).</li>
+  <li><code>agy</code> lists <code>LocalAgentConfig</code> primitives and the four <code>egm-*</code> critic roles.</li>
+</ul>
 
 <!--
-Let's step through our first recording. At our first stop point in `zsh`, we install Vercel Labs' `find-skills` CLI globally with `npx skills add vercel-labs/skills@find-skills -g -y` so it is ready when we move into community skills in Act 3. Next, we launch `agy` right in the project root. Once the prompt box is ready, we run `/plugin` and ask Antigravity to verify that both the `google-antigravity-sdk` plugin and the EGM review subagents are enabled, and to summarise what capabilities they provide. Watch how it inspects the enabled plugins and reports back both the in-process Python SDK primitives and the four EGM reviewer roles.
+Jump into Lab 1 in the codelab now. First, install Vercel Labs' `find-skills` CLI globally so it is waiting for us in Lab 2, then launch `agy`. Run `/plugin` and enable two plugins: `google-antigravity-sdk` and `egm`. Once plugins finish reloading, paste the verification prompt and watch `agy` report back both the in-process Python SDK primitives and the four EGM reviewer roles.
 -->
 
 ---
@@ -146,7 +143,7 @@ config = LocalAgentConfig(
 </div>
 
 <!--
-Let's zoom in on what the `google-antigravity-sdk` plugin teaches our coding agent. Instead of shelling out to a subprocess or spinning up an HTTP bridge, we can embed an Antigravity `Agent` directly in-process inside our Python application using `LocalAgentConfig`. Notice two things the skill emphasises: first, `skills_paths` lets our embedded Python agent mount the exact same `.agents/skills` directory that the CLI uses. Second, it enforces an explicit deny-by-default `policy` and `BudgetConfig`, so an embedded agent inside a TUI only ever runs read-only inspection tools within a bounded token budget.
+While Lab 1 runs, let's zoom in on what the `google-antigravity-sdk` plugin teaches our coding agent. Instead of shelling out to a subprocess or spinning up an HTTP bridge, we can embed an Antigravity `Agent` directly in-process inside our Python application using `LocalAgentConfig`. Notice two things the skill emphasises: first, `skills_paths` lets our embedded Python agent mount the exact same `.agents/skills` directory that the CLI uses. Second, it enforces an explicit deny-by-default `policy` and `BudgetConfig`, so an embedded agent inside a TUI only ever runs read-only inspection tools within a bounded token budget.
 -->
 
 ---
