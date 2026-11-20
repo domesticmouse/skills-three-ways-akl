@@ -30,8 +30,8 @@ npm --prefix slides run build
 
 Useful local Slidev endpoints while the dev server is running:
 - Deck: `http://localhost:3030/`
-- Presenter console (speaker notes + timer): `http://localhost:3030/presenter`
-- Slide overview grid: `http://localhost:3030/overview`
+- Presenter console (speaker notes + timer): `http://localhost:3030/#/presenter/`
+- Slide overview grid: `http://localhost:3030/#/overview/`
 
 To preview the compiled codelab locally over HTTP (`navigator.clipboard` requires `localhost` or `https:`):
 
